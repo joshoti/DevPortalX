@@ -1,0 +1,25 @@
+.title, .text {
+  color: var(--mantine-color-white);
+}
+.title {
+  font-size: 20px;
+  font-weight: 850;
+}
+.text {
+  font-size: rem(30px);
+  font-weight: 800;
+  letter-spacing: rem(-2px);
+  cursor: pointer;
+}
+
+.headerRight {
+  margin-left: auto;
+}
+
+.header {
+  padding-top: 10px;
+}
+
+.button{
+  background: linear-gradient(90deg, #4b6cb7 10%, #253b67 90%);
+}
