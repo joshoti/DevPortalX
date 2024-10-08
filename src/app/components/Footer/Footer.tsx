@@ -1,63 +1,117 @@
-import { IconLogin2, IconArrowUp } from "@tabler/icons-react";
+import {
+  IconDeviceLaptop,
+  IconCopyright,
+  IconBrandInstagram,
+  IconBrandGithubFilled,
+  IconBrandLinkedin,
+} from "@tabler/icons-react";
 import {
   Group,
   Box,
   Text,
-  Button,
   Container,
-  Affix,
-  Transition,
+  Tabs,
   rem,
+  Button,
+  Anchor,
+  Image,
 } from "@mantine/core";
+import IgLogo from "../../assets/images/igLogo.jpg";
 import classes from "./Footer.module.css";
-import { useWindowScroll } from "@mantine/hooks";
 
 export const Footer = () => {
-  const [scroll, scrollTo] = useWindowScroll();
+  const iconStyle = { width: rem(15), height: rem(15) };
+  const iconStylePanel = { width: rem(20), height: rem(20) };
 
   return (
     <Box bg={"var(--mantine-color-dark-9)"}>
-      <Container h={60}>
+      <Container h={150}>
         <Group className={classes.header}>
           <Group>
+            <IconCopyright color="gray" />
+            <Text
+              fw={400}
+              size="lg"
+              style={{ color: "gray", margin: 0, padding: 0 }}
+            >
+              2024
+            </Text>
             <Text className={`${classes.title}`}>DevPortalX</Text>
           </Group>
 
+          <Group>
+            <IconDeviceLaptop color="white" />
+          </Group>
           <Group className={`${classes.headerRight}`}>
-            <Text className={`${classes.text}`}>Docs</Text>
-            <Text className={`${classes.text}`}>Support</Text>
-            <Button
-              color="violet"
-              radius={"md"}
-              variant="filled"
-              leftSection={<IconLogin2 size={20} />}
-            >
-              <Text className={`${classes.text}`}>Get Started</Text>
-            </Button>
+            <Tabs defaultValue="connect">
+              <Tabs.List>
+                <Tabs.Tab
+                  value="connect"
+                  leftSection={
+                    <IconBrandLinkedin color="white" style={iconStyle} />
+                  }
+                >
+                  <Text className={classes.text}>Connect</Text>
+                </Tabs.Tab>
+                <Tabs.Tab
+                  value="with"
+                  leftSection={
+                    <IconBrandGithubFilled color="white" style={iconStyle} />
+                  }
+                >
+                  <Text className={classes.text}>With</Text>
+                </Tabs.Tab>
+                <Tabs.Tab
+                  value="me"
+                  leftSection={
+                    <IconBrandInstagram color="white" style={iconStyle} />
+                  }
+                >
+                  <Text className={classes.text}>Me</Text>
+                </Tabs.Tab>
+              </Tabs.List>
+              <Tabs.Panel value="connect">
+                <Anchor
+                  href="https://www.linkedin.com/in/joshua-oti/"
+                  target="_blank"
+                >
+                  <Button
+                    variant="transparent"
+                    leftSection={<IconBrandLinkedin style={iconStylePanel} />}
+                  >
+                    <Text className={`${classes.text}`}>joshua-oti</Text>
+                  </Button>
+                </Anchor>
+              </Tabs.Panel>
+              <Tabs.Panel value="with">
+                <Anchor href="https://github.com/joshoti" target="_blank">
+                  <Button
+                    variant="transparent"
+                    leftSection={
+                      <IconBrandGithubFilled
+                        color="white"
+                        style={iconStylePanel}
+                      />
+                    }
+                  >
+                    <Text className={classes.text}>joshoti</Text>
+                  </Button>
+                </Anchor>
+              </Tabs.Panel>
+              <Tabs.Panel value="me">
+                <Anchor href="https://instagram.com/josh_ohtee" target="_blank">
+                  <Button
+                    variant="transparent"
+                    leftSection={<Image src={IgLogo} h={23} />}
+                  >
+                    <Text className={classes.text}>josh_ohtee</Text>
+                  </Button>
+                </Anchor>
+              </Tabs.Panel>
+            </Tabs>
           </Group>
         </Group>
       </Container>
-      <Affix position={{ bottom: 20, right: 20 }}>
-        <Transition transition="slide-up" mounted={scroll.y > 0}>
-          {(transitionStyles) => (
-            <Button
-              radius={"md"}
-              variant="gradient"
-              style={transitionStyles}
-              onClick={() => scrollTo({ y: 0 })}
-              gradient={{ from: "indigo", to: "violet", deg: 90 }}
-              leftSection={
-                <IconArrowUp
-                  stroke={4}
-                  style={{ width: rem(16), height: rem(16) }}
-                />
-              }
-            >
-              <Text className={`${classes.text}`}>Scroll to top</Text>
-            </Button>
-          )}
-        </Transition>
-      </Affix>
     </Box>
   );
 };
