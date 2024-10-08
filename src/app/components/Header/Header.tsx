@@ -1,12 +1,11 @@
 import { IconLogin2 } from "@tabler/icons-react";
 import { Group, Box, Text, Button, Container } from "@mantine/core";
 import classes from "./Header.module.css";
-// import { UnstyledButton } from "@mantine/core";
 
 export const Header = () => {
   return (
     <Box bg={"var(--mantine-color-dark-9)"}>
-      <Container h={60}>
+      <Container h={60} style={{ maxWidth: "100%" }}>
         <Group className={classes.header}>
           <Group>
             <Text className={`${classes.title}`}>DevPortalX</Text>
