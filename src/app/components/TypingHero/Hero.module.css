@@ -1,6 +1,7 @@
 .typewriter,
 .cursor {
-  font-size: 60px;
+  font-size: 5vw;
+  /* font-size: 60px; */
 }
 
 .typewriter {
@@ -16,7 +17,12 @@
 }
 
 .container {
-  padding: 50px;
+  max-width: 100%;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 45px;
+  background-color: black;
+  text-align: center;
 }
 .blinkingCursor {
   animation: blink 0.9s step-end infinite;

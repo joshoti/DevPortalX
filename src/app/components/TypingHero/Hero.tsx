@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import classes from "./Hero.module.css";
-import { Container, Box, Text } from "@mantine/core";
+import { Container, Text } from "@mantine/core";
 
 const words = [
   "By Developers, For Developers!",
@@ -63,23 +63,20 @@ export const Hero = () => {
   }, [text]);
 
   return (
-    <Box h={300} bg={"var(--mantine-color-dark-9)"}>
-      <Container className={classes.container}>
-        <Text span className={classes.typewriter}>
-          {text}
-        </Text>
-        <Text
-          span
-          className={
-            isMoving
-              ? `${classes.cursor} ${classes.solidCursor}`
-              : `${classes.cursor} ${classes.blinkingCursor}`
-          }
-        >
-          |
-        </Text>
-      </Container>
-    </Box>
+    <Container className={classes.container}>
+      <Text span className={classes.typewriter}>
+        {text}
+      </Text>
+      <Text
+        span
+        className={
+          isMoving
+            ? `${classes.cursor} ${classes.solidCursor}`
+            : `${classes.cursor} ${classes.blinkingCursor}`
+        }
+      >
+        |
+      </Text>
+    </Container>
   );
-  // return <div id="typewriter">{text}</div>;
 };
