@@ -1,22 +1,11 @@
-.title {
-  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
-  font-size: rem(100px);
-  font-weight: 900;
-  letter-spacing: rem(-2px);
-
-  @media (max-width: $mantine-breakpoint-md) {
-    font-size: rem(50px);
-  }
-}
-
 .title,
 .text,
 .useCaseTitle {
   color: var(--mantine-color-white);
 }
 .title {
-  font-size: 20px;
-  font-weight: 850;
+  font-size: 3vw;
+  font-weight: 700;
 }
 .text {
   font-size: rem(30px);
@@ -26,10 +15,11 @@
 
 .container {
   background-color: black;
-  padding: 30px;
+  /* top and bottom | left and right */
+  padding: 30px 150px;
 }
 
-.useCase {
+.useCaseContainer {
   /* width: 40px; */
   flex: 1;
   /* gap: 10px; */
@@ -42,4 +32,12 @@
 }
 .useCaseBody {
   color: dimgray;
+}
+
+/* .updatesTimelineContainer {
+  text-align: center;
+  justify-content: center;
+} */
+.updatesTimelineBody {
+  font-size: medium;
 }

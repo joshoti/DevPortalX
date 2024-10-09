@@ -5,12 +5,17 @@ export function UseCase() {
   return (
     <Box className={classes.container}>
       <Title className={classes.title}>Use Cases</Title>
-      <Text c="dimmed" size="lg" maw={580} mt="md" mb="xl">
+      <Text c="dimmed" size="lg" maw={"100%"} mt="lg" mb="xl">
         This starter Vite project includes a minimal setup, if you want to learn
         more on Mantine + Vite integration follow{" "}
       </Text>
-      <Group>
-        <Paper radius={25} shadow="xs" p="xl" className={classes.useCase}>
+      <Group mt={"lg"}>
+        <Paper
+          radius={25}
+          shadow="xs"
+          p="xl"
+          className={classes.useCaseContainer}
+        >
           <Text mb={10} className={classes.useCaseTitle}>
             Login
           </Text>
@@ -19,7 +24,12 @@ export function UseCase() {
             require background with shadow
           </Text>
         </Paper>
-        <Paper radius={25} shadow="xs" p="xl" className={classes.useCase}>
+        <Paper
+          radius={25}
+          shadow="xs"
+          p="xl"
+          className={classes.useCaseContainer}
+        >
           <Text mb={10} className={classes.useCaseTitle}>
             Webhooks
           </Text>
@@ -28,7 +38,12 @@ export function UseCase() {
             require background with shadow
           </Text>
         </Paper>
-        <Paper radius={25} shadow="xs" p="xl" className={classes.useCase}>
+        <Paper
+          radius={25}
+          shadow="xs"
+          p="xl"
+          className={classes.useCaseContainer}
+        >
           <Text mb={10} className={classes.useCaseTitle}>
             Coming Soon
           </Text>
