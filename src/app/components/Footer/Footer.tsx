@@ -25,10 +25,10 @@ export const Footer = () => {
 
   return (
     <Box bg={"var(--mantine-color-dark-9)"}>
-      <Container h={150}>
-        <Group className={classes.header}>
-          <Group>
-            <IconCopyright color="gray" />
+      <Container h={150} className={classes.header}>
+        <Group>
+          <Group gap={4}>
+            <IconCopyright size={18} color="gray" />
             <Text
               fw={400}
               size="lg"
@@ -37,11 +37,9 @@ export const Footer = () => {
               2024
             </Text>
             <Text className={`${classes.title}`}>DevPortalX</Text>
+            <IconDeviceLaptop size={25} color="white" />
           </Group>
 
-          <Group>
-            <IconDeviceLaptop color="white" />
-          </Group>
           <Group className={`${classes.headerRight}`}>
             <Tabs defaultValue="connect">
               <Tabs.List>

@@ -16,3 +16,9 @@
 .headerRight {
   margin-left: auto;
 }
+
+.header {
+  margin: 0px;
+  padding: 0px 150px;
+  max-width: 100%;
+}
