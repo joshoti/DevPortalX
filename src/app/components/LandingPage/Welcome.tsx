@@ -8,7 +8,7 @@ import {
   Transition,
   rem,
 } from "@mantine/core";
-import classes from "./Welcome.module.css";
+import classes from "./LandingPage.module.css";
 import { IconArrowUp } from "@tabler/icons-react";
 import { useWindowScroll } from "@mantine/hooks";
 

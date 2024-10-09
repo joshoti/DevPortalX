@@ -10,7 +10,8 @@
 }
 
 .title,
-.text {
+.text,
+.useCaseTitle {
   color: var(--mantine-color-white);
 }
 .title {
@@ -21,4 +22,24 @@
   font-size: rem(30px);
   font-weight: 800;
   letter-spacing: rem(-2px);
+}
+
+.container {
+  background-color: black;
+  padding: 30px;
+}
+
+.useCase {
+  /* width: 40px; */
+  flex: 1;
+  /* gap: 10px; */
+  background-color: rgb(38, 37, 37);
+  padding: 15px;
+}
+.useCaseTitle {
+  font-size: large;
+  font-weight: bold;
+}
+.useCaseBody {
+  color: dimgray;
 }
