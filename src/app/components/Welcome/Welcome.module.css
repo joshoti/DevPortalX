@@ -8,3 +8,17 @@
     font-size: rem(50px);
   }
 }
+
+.title,
+.text {
+  color: var(--mantine-color-white);
+}
+.title {
+  font-size: 20px;
+  font-weight: 850;
+}
+.text {
+  font-size: rem(30px);
+  font-weight: 800;
+  letter-spacing: rem(-2px);
+}
