@@ -1,0 +1,49 @@
+.typewriter,
+.cursor {
+  font-size: 60px;
+}
+
+.typewriter {
+  color: var(--mantine-color-white);
+  font-weight: 500;
+  letter-spacing: rem(-2px);
+}
+
+.cursor {
+  color: #5345c8;
+  background-color: #5345c8;
+  font-weight: 100;
+}
+
+.container {
+  padding: 50px;
+}
+.blinkingCursor {
+  animation: blink 0.9s step-end infinite;
+}
+
+.solidCursor {
+  animation: persist 10s step-end infinite;
+}
+
+@keyframes blink {
+  0% {
+    color: black;
+    background-color: black;
+  }
+  50% {
+    color: #5345c8;
+    background-color: #5345c8;
+  }
+  100% {
+    color: black;
+    background-color: black;
+  }
+}
+
+@keyframes persist {
+  0% {
+    color: #5345c8;
+    background-color: #5345c8;
+  }
+}
