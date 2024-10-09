@@ -21,6 +21,12 @@
   padding-top: 10px;
 }
 
+.container {
+  position: fixed;
+  background-color: black;
+  width: 100%;
+}
+
 .button {
   background: linear-gradient(90deg, #4b6cb7 10%, #253b67 90%);
 }

@@ -4,8 +4,8 @@ import classes from "./Header.module.css";
 
 export const Header = () => {
   return (
-    <Box bg={"var(--mantine-color-dark-9)"}>
-      <Container h={60} style={{ maxWidth: "100%" }}>
+    <Box className={classes.container}>
+      <Container h={60}>
         <Group className={classes.header}>
           <Group>
             <Text className={`${classes.title}`}>DevPortalX</Text>

@@ -17,10 +17,14 @@
 }
 
 .container {
+  position: relative;
+  z-index: -1;
   max-width: 100%;
   margin-left: 0px;
   margin-right: 0px;
-  padding: 45px;
+  /* 60 (header height) + 45 (container padding) */
+  padding-top: 105px;
+  padding-bottom: 45px;
   background-color: black;
   text-align: center;
 }
