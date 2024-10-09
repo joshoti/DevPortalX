@@ -16,7 +16,9 @@
 .container {
   background-color: black;
   /* top and bottom | left and right */
-  padding: 30px 150px;
+  padding: 2vw 10vw;
+  max-width: 100%;
+  width: 100%;
 }
 
 .useCaseContainer {
@@ -40,4 +42,10 @@
 } */
 .updatesTimelineBody {
   font-size: medium;
+}
+
+@media (max-width: 800px) {
+  .title {
+    font-size: 25px;
+  }
 }

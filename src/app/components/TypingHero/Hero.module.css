@@ -22,9 +22,9 @@
   max-width: 100%;
   margin-left: 0px;
   margin-right: 0px;
-  /* top = 60 (header height) + 45 (container padding) */
+  /* top = 70 (header height) + 45 (container padding) */
   /* top | left and right | bottom */
-  padding: 105px 150px 45px;
+  padding: 115px 10vw 4vw;
   background-color: black;
   text-align: center;
 }
