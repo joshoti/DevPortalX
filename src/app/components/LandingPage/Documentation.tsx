@@ -25,7 +25,7 @@ export function Documentation() {
           radius={25}
           shadow="xs"
           p="xl"
-          className={classes.singlePaperContainer}
+          className={classes.singleDocsPaperContainer}
         >
           <Text mb={10} className={classes.docsTitle}>
             Login
@@ -39,7 +39,7 @@ export function Documentation() {
           radius={25}
           shadow="xs"
           p="xl"
-          className={classes.singlePaperContainer}
+          className={classes.singleDocsPaperContainer}
         >
           <Text mb={10} className={classes.docsTitle}>
             Webhooks
@@ -53,7 +53,7 @@ export function Documentation() {
           radius={25}
           shadow="xs"
           p="xl"
-          className={classes.singlePaperContainer}
+          className={classes.singleDocsPaperContainer}
         >
           <Text mb={10} className={classes.docsTitle}>
             DevPortalX API
@@ -67,7 +67,7 @@ export function Documentation() {
           radius={25}
           shadow="xs"
           p="xl"
-          className={classes.singlePaperContainer}
+          className={classes.singleDocsPaperContainer}
         >
           <Text mb={10} className={classes.docsTitle}>
             Coming Soon
