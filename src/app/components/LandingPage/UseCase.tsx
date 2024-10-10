@@ -2,9 +2,11 @@ import { Paper, Group, Text, Box, Flex, Tabs } from "@mantine/core";
 import classes from "./LandingPage.module.css";
 
 export function UseCase() {
+  const useCaseTabStyle = { height: "50px" };
   return (
     <Box className={classes.container}>
-      <Group mt={"xl"} align="flex-start" justify="space-between">
+      <Group gap={"5vw"} mt={"xl"} align="flex-start" justify="space-between">
+        {/* Tabs on the left */}
         <Flex
           direction={"column"}
           flex={1}
@@ -13,18 +15,39 @@ export function UseCase() {
           <Text className={classes.title}>Use Case</Text>
           <Tabs
             c={"white"}
+            color="#5345c8"
             radius={10}
             orientation="vertical"
             variant="pills"
             defaultValue="login"
           >
             <Tabs.List w={"100%"}>
-              <Tabs.Tab value="login">Login SSO</Tabs.Tab>
-              <Tabs.Tab value="webhooks">Webhooks</Tabs.Tab>
-              <Tabs.Tab value="nextstep">Next Steps</Tabs.Tab>
+              <Tabs.Tab
+                style={useCaseTabStyle}
+                value="login"
+                className={`${classes.singleUseCaseTitle} ${classes.tabs}`}
+              >
+                Login SSO
+              </Tabs.Tab>
+              <Tabs.Tab
+                style={useCaseTabStyle}
+                value="webhooks"
+                className={`${classes.singleUseCaseTitle} ${classes.tabs}`}
+              >
+                Webhooks
+              </Tabs.Tab>
+              <Tabs.Tab
+                style={useCaseTabStyle}
+                value="nextstep"
+                className={`${classes.singleUseCaseTitle} ${classes.tabs}`}
+              >
+                Next Steps
+              </Tabs.Tab>
             </Tabs.List>
           </Tabs>
         </Flex>
+
+        {/* Paper on the right */}
         <Flex rowGap={30} direction={"column"} flex={2}>
           <Paper
             radius={25}

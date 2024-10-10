@@ -1,6 +1,8 @@
 .title,
 .text,
-.useCaseTitle {
+.useCaseTitle,
+.docsTitle,
+.singleUseCasePaperTitle {
   color: var(--mantine-color-white);
 }
 .title {
@@ -21,18 +23,27 @@
   width: 100%;
 }
 
-.useCaseContainer {
+.singlePaperContainer,
+.docsContainer {
   /* width: 40px; */
   flex: 1;
   /* gap: 10px; */
   background-color: rgb(38, 37, 37);
   padding: 15px;
 }
-.useCaseTitle {
+.docsTitle,
+.singleUseCasePaperTitle {
+  font-size: larger;
+  font-weight: bold;
+}
+
+.singleUseCaseTitle {
   font-size: large;
   font-weight: bold;
 }
-.useCaseBody {
+
+.singleDocsText,
+.singleUseCaseText {
   color: dimgray;
 }
 
@@ -44,6 +55,19 @@
   font-size: medium;
 }
 
+.singleCardContainer {
+  flex: 1;
+}
+
+.tabs:hover {
+  background-color: rgb(28, 28, 28);
+}
+
+.useCaseContainer {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 70px; /* required */
+}
 @media (max-width: 800px) {
   .title {
     font-size: 25px;
