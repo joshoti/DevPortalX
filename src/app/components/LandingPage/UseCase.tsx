@@ -1,57 +1,74 @@
-import { Paper, Group, Text, Title, Box } from "@mantine/core";
+import { Paper, Group, Text, Box, Flex, Tabs } from "@mantine/core";
 import classes from "./LandingPage.module.css";
 
 export function UseCase() {
   return (
     <Box className={classes.container}>
-      <Title className={classes.title}>Use Cases</Title>
-      <Text c="dimmed" size="lg" maw={"100%"} mt="lg" mb="xl">
-        This starter Vite project includes a minimal setup, if you want to learn
-        more on Mantine + Vite integration follow{" "}
-      </Text>
-      <Group mt={"lg"}>
-        <Paper
-          radius={25}
-          shadow="xs"
-          p="xl"
+      <Group mt={"xl"} align="flex-start" justify="space-between">
+        <Flex
+          direction={"column"}
+          flex={1}
           className={classes.useCaseContainer}
         >
-          <Text mb={10} className={classes.useCaseTitle}>
-            Login
-          </Text>
-          <Text className={classes.useCaseBody}>
-            Use it to create cards, dropdowns, modals and other components that
-            require background with shadow
-          </Text>
-        </Paper>
-        <Paper
-          radius={25}
-          shadow="xs"
-          p="xl"
-          className={classes.useCaseContainer}
-        >
-          <Text mb={10} className={classes.useCaseTitle}>
-            Webhooks
-          </Text>
-          <Text className={classes.useCaseBody}>
-            Use it to create cards, dropdowns, modals and other components that
-            require background with shadow
-          </Text>
-        </Paper>
-        <Paper
-          radius={25}
-          shadow="xs"
-          p="xl"
-          className={classes.useCaseContainer}
-        >
-          <Text mb={10} className={classes.useCaseTitle}>
-            Coming Soon
-          </Text>
-          <Text className={classes.useCaseBody}>
-            Use it to create cards, dropdowns, modals and other components that
-            require background with shadow
-          </Text>
-        </Paper>
+          <Text className={classes.title}>Use Case</Text>
+          <Tabs
+            c={"white"}
+            radius={10}
+            orientation="vertical"
+            variant="pills"
+            defaultValue="login"
+          >
+            <Tabs.List w={"100%"}>
+              <Tabs.Tab value="login">Login SSO</Tabs.Tab>
+              <Tabs.Tab value="webhooks">Webhooks</Tabs.Tab>
+              <Tabs.Tab value="nextstep">Next Steps</Tabs.Tab>
+            </Tabs.List>
+          </Tabs>
+        </Flex>
+        <Flex rowGap={30} direction={"column"} flex={2}>
+          <Paper
+            radius={25}
+            shadow="xs"
+            p="xl"
+            className={classes.singlePaperContainer}
+          >
+            <Text mb={10} className={classes.singleUseCasePaperTitle}>
+              Login SSO
+            </Text>
+            <Text className={classes.singleUseCaseText}>
+              Use it to create cards, dropdowns, modals and other components
+              that require background with shadow
+            </Text>
+          </Paper>
+          <Paper
+            radius={25}
+            shadow="xs"
+            p="xl"
+            className={classes.singlePaperContainer}
+          >
+            <Text mb={10} className={classes.singleUseCasePaperTitle}>
+              Webhooks
+            </Text>
+            <Text className={classes.singleUseCaseText}>
+              Use it to create cards, dropdowns, modals and other components
+              that require background with shadow
+            </Text>
+          </Paper>
+          <Paper
+            radius={25}
+            shadow="xs"
+            p="xl"
+            className={classes.singlePaperContainer}
+          >
+            <Text mb={10} className={classes.singleUseCasePaperTitle}>
+              Next Steps
+            </Text>
+            <Text className={classes.singleUseCaseText}>
+              Use it to create cards, dropdowns, modals and other components
+              that require background with shadow
+            </Text>
+          </Paper>
+        </Flex>
       </Group>
     </Box>
   );
