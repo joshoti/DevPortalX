@@ -1,9 +1,10 @@
+import { Footer } from "../components/Footer/Footer";
 import { Header } from "../components/Header/Header";
 import { Hero } from "../components/TypingHero/Hero";
-import { Welcome } from "../components/LandingPage/Welcome";
-import { UseCase } from "../components/LandingPage/UseCase";
-import { Footer } from "../components/Footer/Footer";
+import { Documentation } from "../components/LandingPage/Documentation";
 import { Updates } from "../components/LandingPage/Updates";
+import { UseCase } from "../components/LandingPage/UseCase";
+import { Welcome } from "../components/LandingPage/Welcome";
 
 export function HomePage() {
   return (
@@ -11,6 +12,7 @@ export function HomePage() {
       <Header />
       <Hero />
       <UseCase />
+      <Documentation />
       <Updates />
       <Welcome />
       <Footer />
