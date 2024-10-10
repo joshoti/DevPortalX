@@ -22,3 +22,7 @@
   padding: 0px 150px;
   max-width: 100%;
 }
+
+.tabs:hover {
+  background-color: rgb(56, 56, 56);
+}

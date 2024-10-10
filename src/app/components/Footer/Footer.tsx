@@ -45,6 +45,7 @@ export const Footer = () => {
               <Tabs.List>
                 <Tabs.Tab
                   value="connect"
+                  className={classes.tabs}
                   leftSection={
                     <IconBrandLinkedin color="white" style={iconStyle} />
                   }
@@ -53,6 +54,7 @@ export const Footer = () => {
                 </Tabs.Tab>
                 <Tabs.Tab
                   value="with"
+                  className={classes.tabs}
                   leftSection={
                     <IconBrandGithubFilled color="white" style={iconStyle} />
                   }
@@ -61,6 +63,7 @@ export const Footer = () => {
                 </Tabs.Tab>
                 <Tabs.Tab
                   value="me"
+                  className={classes.tabs}
                   leftSection={
                     <IconBrandInstagram color="white" style={iconStyle} />
                   }
