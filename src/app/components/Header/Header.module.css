@@ -25,6 +25,7 @@
   position: fixed;
   background-color: black;
   width: 100%;
+  z-index: 10;
 }
 
 .button {
