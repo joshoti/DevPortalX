@@ -7,34 +7,29 @@ import nextStepsIcon from "../../assets/images/next-steps-icon.jpg";
 export function UseCase() {
   const useCaseTabStyle = { height: "50px" };
   const useCasePaperSize = { height: 80, width: 80 };
+  const scrollBehavior: Object = {
+    behavior: "smooth",
+    block: "center",
+  };
   const scrollToLoginSSO = () => {
     const supportSection = document.getElementById("loginsso");
-    supportSection?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-    });
+    supportSection?.scrollIntoView(scrollBehavior);
   };
   const scrollToWebhook = () => {
     const supportSection = document.getElementById("webhook");
-    supportSection?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-    });
+    supportSection?.scrollIntoView(scrollBehavior);
   };
   const scrollToNextSteps = () => {
     const supportSection = document.getElementById("nextsteps");
-    supportSection?.scrollIntoView({
-      behavior: "smooth",
-      block: "end",
-    });
+    supportSection?.scrollIntoView(scrollBehavior);
   };
   return (
     <Box className={classes.container}>
-      <Group gap={"5vw"} mt={"xl"} align="flex-start" justify="space-between">
+      <Group gap={"8vw"} mt={"xl"} align="flex-start" justify="space-between">
         {/* Tabs on the left */}
         <Flex
           direction={"column"}
-          flex={1}
+          flex={0.7}
           className={classes.useCaseContainer}
         >
           <Text className={classes.title}>Use Case</Text>
@@ -76,7 +71,7 @@ export function UseCase() {
         </Flex>
 
         {/* Paper on the right */}
-        <Flex rowGap={30} direction={"column"} flex={2}>
+        <Flex rowGap={30} direction={"column"} flex={1}>
           <Paper
             id="loginsso"
             radius={25}

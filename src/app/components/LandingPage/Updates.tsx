@@ -9,7 +9,7 @@ import {
 
 export function Updates() {
   return (
-    <Box className={classes.container}>
+    <Box pb={100} className={classes.container}>
       <Title className={classes.title}>Updates</Title>
       <Text c="dimmed" size="lg" maw={"100%"} mt="md" mb="xl">
         This starter Vite project includes a minimal setup, if you want to learn
