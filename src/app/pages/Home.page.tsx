@@ -11,10 +11,9 @@ export function HomePage() {
     <>
       <Header />
       <Hero />
-      <UseCase />
       <Documentation />
+      <UseCase />
       <Updates />
-      <Welcome />
       <Footer />
     </>
   );
