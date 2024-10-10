@@ -12,63 +12,51 @@ export function Updates() {
     <Box pb={100} className={classes.container}>
       <Title className={classes.title}>Updates</Title>
       <Text c="dimmed" size="lg" maw={"100%"} mt="md" mb="xl">
-        This starter Vite project includes a minimal setup, if you want to learn
-        more on Mantine + Vite integration follow{" "}
+        A timeline log of last completed task, current update and the next two updates.
       </Text>
       <Group justify="center" className={classes.updatesTimelineContainer}>
         <Timeline active={1} bulletSize={24} lineWidth={2}>
-          <Timeline.Item
-            bullet={<IconGitBranch size={12} />}
-            title="New branch"
-          >
+          <Timeline.Item bullet={<IconGitBranch size={12} />} title="Past [-1]">
             <Text c="dimmed" size="lg">
-              You've created new branch fix-notifications from master
+              Created the Java backend API to support login and the creation of
+              new users.
             </Text>
-            <Text size="xs" mt={4}>
-              2 hours ago
+            <Text c={"white"} size="xs" mt={4}>
+              Oct 5 - 6
             </Text>
           </Timeline.Item>
 
-          <Timeline.Item bullet={<IconGitCommit size={12} />} title="Commits">
+          <Timeline.Item bullet={<IconGitCommit size={12} />} title="Present">
             <Text c="dimmed" size="lg">
-              You&apos;ve pushed 23 commits to
-              <Text variant="link" component="span" inherit>
-                fix-notifications branch
-              </Text>
+              Homepage, Login, and Registration UI pages mostly completed.
             </Text>
-            <Text size="xs" mt={4}>
-              52 minutes ago
+            <Text c={"white"} size="xs" mt={4}>
+              Oct 6 - 10
             </Text>
           </Timeline.Item>
 
           <Timeline.Item
-            title="Pull request"
+            title="Future [1]"
             bullet={<IconGitPullRequest size={12} />}
             lineVariant="dashed"
           >
             <Text c="dimmed" size="lg">
-              You&apos;ve submitted a pull request
-              <Text variant="link" component="span" inherit>
-                Fix incorrect notification message (#187)
-              </Text>
+              Create UI pages for the links in the Header.
             </Text>
-            <Text size="xs" mt={4}>
-              34 minutes ago
+            <Text c={"white"} size="xs" mt={4}>
+              Anticipated start: Oct 12
             </Text>
           </Timeline.Item>
 
           <Timeline.Item
-            title="Code review"
+            title="Future [2]"
             bullet={<IconMessageDots size={12} />}
           >
             <Text c="dimmed" size="lg">
-              <Text variant="link" component="span" inherit>
-                Robert Gluesticker
-              </Text>{" "}
-              left a code review on your pull request
+              Create UI pages for the User's dashboard
             </Text>
-            <Text size="xs" mt={4}>
-              12 minutes ago
+            <Text c={"white"} size="xs" mt={4}>
+              Anticipated start: Oct 18
             </Text>
           </Timeline.Item>
         </Timeline>
