@@ -17,7 +17,7 @@
 .container {
   background-color: black;
   /* top and bottom | left and right */
-  padding: 2vw 10vw;
+  padding: 3vw 10vw;
   max-width: 100%;
   width: 100%;
 }
