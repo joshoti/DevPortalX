@@ -14,6 +14,7 @@ import {
   Button,
   Anchor,
   Image,
+  Divider,
 } from "@mantine/core";
 import IgLogo from "../../assets/images/igLogo.jpg";
 import classes from "./Footer.module.css";
@@ -23,11 +24,8 @@ export const Footer = () => {
   const iconStylePanel = { width: rem(20), height: rem(20) };
 
   return (
-    <Container
-      bg={"var(--mantine-color-dark-9)"}
-      h={150}
-      className={classes.header}
-    >
+    <Container h={150} className={classes.container}>
+      <Divider m={0} pb={20} my="md" />
       <Group>
         <Group gap={4}>
           <IconCopyright size={18} color="gray" />
