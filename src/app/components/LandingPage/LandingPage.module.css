@@ -1,8 +1,7 @@
 .title,
 .text,
 .useCaseTitle,
-.docsTitle,
-.singleUseCasePaperTitle {
+.docsTitle {
   color: var(--mantine-color-white);
 }
 .title {
@@ -23,14 +22,24 @@
   width: 100%;
 }
 
-.singlePaperContainer,
-.docsContainer {
-  /* width: 40px; */
+.singleUseCaseIconContainer {
+  margin-left: auto;
+}
+
+.singlePaperContainer {
   flex: 1;
-  /* gap: 10px; */
+  /* background-color: rgb(243, 243, 243); */
+  /* background-color: white; */
+  background: linear-gradient(90deg, rgb(214, 213, 213), 30%, white 60%, white);
+  padding: 15px;
+}
+
+.singleDocsPaperContainer {
+  flex: 1;
   background-color: rgb(38, 37, 37);
   padding: 15px;
 }
+
 .docsTitle,
 .singleUseCasePaperTitle {
   font-size: larger;
@@ -46,6 +55,7 @@
 .singleUseCaseText {
   color: dimgray;
 }
+
 
 /* .updatesTimelineContainer {
   text-align: center;
