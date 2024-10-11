@@ -43,7 +43,7 @@ export function Documentation() {
             shadow={docsCardContainerStyle.shadow}
             padding={docsCardContainerStyle.padding}
             radius={cardRadius}
-            className={classes.singleCardContainer}
+            className={classes.singleDocsCardContainer}
           >
             <Card.Section>
               <Box m={cardImageMargin}>
@@ -73,7 +73,7 @@ export function Documentation() {
             shadow={docsCardContainerStyle.shadow}
             padding={docsCardContainerStyle.padding}
             radius={cardRadius}
-            className={classes.singleCardContainer}
+            className={classes.singleDocsCardContainer}
           >
             <Card.Section>
               <Box m={cardImageMargin}>
@@ -104,7 +104,7 @@ export function Documentation() {
             shadow={docsCardContainerStyle.shadow}
             padding={docsCardContainerStyle.padding}
             radius={cardRadius}
-            className={classes.singleCardContainer}
+            className={classes.singleDocsCardContainer}
           >
             <Card.Section>
               <Box m={cardImageMargin}>

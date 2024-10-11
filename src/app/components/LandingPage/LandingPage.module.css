@@ -26,20 +26,13 @@
   margin-left: auto;
 }
 
-.singlePaperContainer {
+.singleUseCasePaperContainer {
   flex: 1;
-  /* background-color: rgb(243, 243, 243); */
-  /* background-color: white; */
-  background: linear-gradient(90deg, rgb(214, 213, 213), 30%, white 60%, white);
+  background-color: rgb(243, 243, 243);
   padding: 15px;
 }
 
-.singleDocsPaperContainer {
-  flex: 1;
-  background-color: rgb(19, 19, 19);
-  padding: 15px;
-}
-.singleCardContainer {
+.singleDocsCardContainer {
   flex: 1;
   background-color: rgb(30, 30, 30);
   /* background-color: rgba(255, 255, 255, 0.12); */
@@ -66,10 +59,6 @@
   color: rgb(130, 130, 130);
 }
 
-/* .updatesTimelineContainer {
-  text-align: center;
-  justify-content: center;
-} */
 .updatesTimelineBody {
   font-size: medium;
 }
@@ -83,6 +72,12 @@
   position: -webkit-sticky;
   top: 70px; /* required */
 }
+
+.singleCardContainer:hover {
+  transform: scale(1.03);
+  transition: 0.26s ease-in-out;
+}
+
 @media (max-width: 800px) {
   .title {
     font-size: 25px;

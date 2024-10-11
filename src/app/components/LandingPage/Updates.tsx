@@ -19,7 +19,7 @@ export function Updates() {
         A timeline log of last completed task, current update and the next two
         updates.
       </Text>
-      <Group justify="center" className={classes.updatesTimelineContainer}>
+      <Group justify="center">
         <Timeline
           active={1}
           color="#5345c8"
