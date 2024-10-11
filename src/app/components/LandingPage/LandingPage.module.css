@@ -9,7 +9,7 @@
   font-weight: 700;
 }
 .text {
-  font-size: rem(30px);
+  font-size: 3vw;
   font-weight: 800;
   letter-spacing: rem(-2px);
 }
@@ -36,10 +36,14 @@
 
 .singleDocsPaperContainer {
   flex: 1;
-  background-color: rgb(38, 37, 37);
+  background-color: rgb(19, 19, 19);
   padding: 15px;
 }
-
+.singleCardContainer {
+  flex: 1;
+  background-color: rgb(30, 30, 30);
+  /* background-color: rgba(255, 255, 255, 0.12); */
+}
 .docsTitle,
 .singleUseCasePaperTitle {
   font-size: larger;
@@ -53,9 +57,14 @@
 
 .singleDocsText,
 .singleUseCaseText {
+  font-size: 18px;
+}
+.singleUseCaseText {
   color: dimgray;
 }
-
+.singleDocsText {
+  color: rgb(130, 130, 130);
+}
 
 /* .updatesTimelineContainer {
   text-align: center;
@@ -63,10 +72,6 @@
 } */
 .updatesTimelineBody {
   font-size: medium;
-}
-
-.singleCardContainer {
-  flex: 1;
 }
 
 .tabs:hover {
