@@ -2,7 +2,7 @@ import { Paper, Group, Text, Box, Flex, Tabs, Image } from "@mantine/core";
 import classes from "./LandingPage.module.css";
 import loginIcon from "../../assets/images/login-icon.png";
 import webhookIcon from "../../assets/images/webhooks.png";
-import nextStepsIcon from "../../assets/images/next-steps-icon.jpg";
+import analyticsIcon from "../../assets/images/analytics.png";
 
 export function UseCase() {
   const useCaseTabStyle = { height: "50px" };
@@ -19,8 +19,8 @@ export function UseCase() {
     const supportSection = document.getElementById("webhook");
     supportSection?.scrollIntoView(scrollBehavior);
   };
-  const scrollToNextSteps = () => {
-    const supportSection = document.getElementById("nextsteps");
+  const scrollToAnalytics = () => {
+    const supportSection = document.getElementById("analytics");
     supportSection?.scrollIntoView(scrollBehavior);
   };
   return (
@@ -59,12 +59,12 @@ export function UseCase() {
                 Webhooks
               </Tabs.Tab>
               <Tabs.Tab
-                onClick={scrollToNextSteps}
+                onClick={scrollToAnalytics}
                 style={useCaseTabStyle}
-                value="nextstep"
+                value="analytics"
                 className={`${classes.singleUseCaseTitle} ${classes.tabs}`}
               >
-                Next Steps
+                Real-time Analytics
               </Tabs.Tab>
             </Tabs.List>
           </Tabs>
@@ -77,7 +77,7 @@ export function UseCase() {
             radius={25}
             shadow="xs"
             p="xl"
-            className={classes.singlePaperContainer}
+            className={classes.singleUseCasePaperContainer}
             h={400}
           >
             <Text mb={10} className={classes.singleUseCasePaperTitle}>
@@ -99,7 +99,7 @@ export function UseCase() {
             radius={25}
             shadow="xs"
             p="xl"
-            className={classes.singlePaperContainer}
+            className={classes.singleUseCasePaperContainer}
           >
             <Text mb={10} className={classes.singleUseCasePaperTitle}>
               Webhooks
@@ -116,14 +116,14 @@ export function UseCase() {
             ></Image>
           </Paper>
           <Paper
-            id="nextsteps"
+            id="analytics"
             radius={25}
             shadow="xs"
             p="xl"
-            className={classes.singlePaperContainer}
+            className={classes.singleUseCasePaperContainer}
           >
             <Text mb={10} className={classes.singleUseCasePaperTitle}>
-              Next Steps
+              Real-time Analytics
             </Text>
             <Text className={classes.singleUseCaseText}>
               Use it to create cards, dropdowns, modals and other components
@@ -133,7 +133,7 @@ export function UseCase() {
               className={classes.singleUseCaseIconContainer}
               fit="contain"
               style={useCasePaperSize}
-              src={nextStepsIcon}
+              src={analyticsIcon}
             ></Image>
           </Paper>
         </Flex>

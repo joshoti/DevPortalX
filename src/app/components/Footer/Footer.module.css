@@ -1,7 +1,6 @@
 .title,
 .text {
   color: var(--mantine-color-white);
-  cursor: pointer;
 }
 .title {
   font-size: 20px;
