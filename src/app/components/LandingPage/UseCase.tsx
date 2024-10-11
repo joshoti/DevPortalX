@@ -84,8 +84,9 @@ export function UseCase() {
               Login SSO
             </Text>
             <Text className={classes.singleUseCaseText}>
-              Use it to create cards, dropdowns, modals and other components
-              that require background with shadow
+              Single Sign-On (SSO) simplifies login by allowing users to access
+              multiple apps with a single account, reducing login hassles and
+              improving security.
             </Text>
             <Image
               className={classes.singleUseCaseIconContainer}
@@ -105,8 +106,8 @@ export function UseCase() {
               Webhooks
             </Text>
             <Text className={classes.singleUseCaseText}>
-              Use it to create cards, dropdowns, modals and other components
-              that require background with shadow
+              Webhooks automate integrations by instantly syncing data between
+              platforms, eliminating manual updates and speeding up workflows.
             </Text>
             <Image
               className={classes.singleUseCaseIconContainer}
@@ -126,8 +127,9 @@ export function UseCase() {
               Real-time Analytics
             </Text>
             <Text className={classes.singleUseCaseText}>
-              Use it to create cards, dropdowns, modals and other components
-              that require background with shadow
+              Real-time analytics provide immediate feedback on user behavior
+              and system performance, empowering faster responses and better
+              decision-making.
             </Text>
             <Image
               className={classes.singleUseCaseIconContainer}
