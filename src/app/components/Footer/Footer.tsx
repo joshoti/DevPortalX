@@ -25,7 +25,7 @@ export const Footer = () => {
 
   return (
     <Container h={150} className={classes.container}>
-      <Divider m={0} pb={20} my="md" />
+      <Divider pb={20} my={0} />
       <Group>
         <Group gap={4}>
           <IconCopyright size={18} color="gray" />
