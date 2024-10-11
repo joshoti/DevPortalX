@@ -32,7 +32,7 @@ export function UseCase() {
           flex={0.7}
           className={classes.useCaseContainer}
         >
-          <Text className={classes.title}>Use Case</Text>
+          <Text className={classes.title}>Use Cases</Text>
           <Tabs
             c={"white"}
             color="#5345c8"
