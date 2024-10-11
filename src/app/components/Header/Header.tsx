@@ -9,13 +9,15 @@ export const Header = () => {
       <Container maw={"100%"} ml={20} mr={20} h={75}>
         <Group className={classes.header}>
           <Group>
-            <Text className={`${classes.title}`}>DevPortalX</Text>
+            <Link className={classes.title} to="/">
+              <Text className={`${classes.title}`}>DevPortalX</Text>
+            </Link>
           </Group>
 
           <Group className={`${classes.headerRight}`}>
             <Text className={`${classes.text}`}>Docs</Text>
             <Text className={`${classes.text}`}>Support</Text>
-            <Link to="/register">
+            <Link to="/login">
               <Button
                 radius={"md"}
                 variant="gradient"
