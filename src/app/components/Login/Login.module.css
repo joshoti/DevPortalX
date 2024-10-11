@@ -1,0 +1,28 @@
+.loginDecorationContainer {
+  background-color: black;
+}
+.title {
+  font-size: 45px;
+  font-weight: 700;
+}
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+}
+.text,
+.textLink {
+  font-size: 17px;
+}
+
+.text {
+  font-weight: 400;
+}
+
+.textLink {
+  text-decoration: none;
+  color: "#5345c8";
+  font-weight: bold;
+}
+.textLink:hover {
+  text-decoration: underline;
+}
