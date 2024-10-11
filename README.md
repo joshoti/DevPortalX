@@ -4,7 +4,7 @@ A centralized developer portal providing APIs, resources, and tools for seamless
 - See Spring backend API [here](https://github.com/joshoti/DevPortalX-api)
 
 ## Current Homepage (You should take a look)
-<img src="src/app/assets/images/current Homepage.png" title="Homepage" style="width: 320px">
+<img src="src/app/assets/images/current Homepage.png" title="Homepage">
 
 # Getting Started with Create React App
 
