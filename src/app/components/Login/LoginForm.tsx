@@ -1,5 +1,4 @@
 import {
-  Alert,
   Button,
   Group,
   TextInput,
@@ -7,7 +6,6 @@ import {
   Image,
   Text,
   Flex,
-  Transition,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import loginArtBird from "../../assets/images/One-Line-bird.jpg";
@@ -16,9 +14,11 @@ import { IconAt, IconLockPassword } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { api } from "../../api/axios-api";
 import { useState } from "react";
-import { showNotification, notifications } from "@mantine/notifications";
 
 export function LoginForm() {
+  const [displayAlert, setDisplayAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -38,24 +38,13 @@ export function LoginForm() {
     api
       .post("/api/users/login", { email: form.email, password: form.password })
       .then(({ data }) => {
-        console.log("Then section");
         console.log(data);
       })
       .catch((error) => {
-        console.log("Catch section");
-        showNotification({
-          title: "Error",
-          message: error.response.data.message || "Unable to login",
-          color: "red",
-        });
-        notifications.show({
-          title: "Error",
-          message: error.response.data.message || "Unable to login",
-          color: "red",
-        });
-        console.error({
-          title: error.response.data.message || "Unable to login",
-        });
+        const message = error.response.data.message || "Unable to login";
+
+        setAlertMessage(message);
+        setDisplayAlert(true);
       });
   };
 
@@ -83,6 +72,7 @@ export function LoginForm() {
                 />
               }
               style={textInputStyle}
+              onClick={() => setDisplayAlert(false)}
               withAsterisk
               mb={15}
               size="md"
@@ -99,14 +89,23 @@ export function LoginForm() {
                 />
               }
               style={textInputStyle}
+              onClick={() => setDisplayAlert(false)}
               withAsterisk
-              mb={15}
               size="md"
               label="Password"
               placeholder="password"
               key={form.key("password")}
               {...form.getInputProps("password")}
             />
+            <Text
+              style={{
+                color: "red",
+                display: displayAlert ? "block" : "none",
+                fontWeight: "bold",
+                margin: 0,
+              }}
+              children={alertMessage}
+            ></Text>
 
             <Group justify="end">
               <Link className={classes.textLink} to="#">

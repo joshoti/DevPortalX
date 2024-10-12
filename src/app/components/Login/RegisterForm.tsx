@@ -11,10 +11,14 @@ import { useForm } from "@mantine/form";
 import loginArtFlowers from "../../assets/images/one-line-art-girl-with-flowers.avif";
 import classes from "./Login.module.css";
 import { IconAt, IconLockPassword } from "@tabler/icons-react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../api/axios-api";
 
 export function RegisterForm() {
+  const [displayAlert, setDisplayAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
+
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -41,7 +45,8 @@ export function RegisterForm() {
   const handleSubmit = (form: SignUpT) => {
     console.log(form);
     if (form.password !== form.confirmPassword) {
-      // notifyUser;
+      setAlertMessage("Passwords don't match");
+      setDisplayAlert(true);
       return;
     }
     api
@@ -53,9 +58,11 @@ export function RegisterForm() {
         console.log(data);
       })
       .catch((error) => {
-        console.error({
-          title: error.response.data.message || "Unable to login",
-        });
+        const message =
+          error.response.data.message || "Unable to create new account";
+
+        setAlertMessage(message);
+        setDisplayAlert(true);
       });
   };
 
@@ -117,13 +124,21 @@ export function RegisterForm() {
               }
               style={textInputStyle}
               withAsterisk
-              mb={25}
               size="md"
               label="Confirm Password"
               placeholder="Confirm password"
               key={form.key("confirmPassword")}
               {...form.getInputProps("confirmPassword")}
             />
+            <Text
+              style={{
+                color: "red",
+                display: displayAlert ? "block" : "none",
+                fontWeight: "bold",
+                margin: 0,
+              }}
+              children={alertMessage}
+            ></Text>
 
             <Group mt="xs" mb="md">
               <Button color="#5345c8" type="submit">
