@@ -1,5 +1,8 @@
+.pageContainer {
+  height: 750px;
+}
 .loginDecorationContainer {
-  background-color: black;
+  background-color: whitesmoke;
 }
 .title {
   font-size: 45px;
@@ -25,4 +28,15 @@
 }
 .textLink:hover {
   text-decoration: underline;
+}
+
+.errorMessage {
+  margin: 0;
+  color: red;
+  background-color: white;
+  font-weight: bold;
+}
+
+.caution {
+  justify-content: flex-start;
 }
