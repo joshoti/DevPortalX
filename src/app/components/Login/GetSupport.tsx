@@ -1,11 +1,21 @@
-import { Button, Group, TextInput, Text, Flex, ThemeIcon } from "@mantine/core";
+import {
+  Button,
+  Group,
+  TextInput,
+  Text,
+  Flex,
+  ThemeIcon,
+  Transition,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import classes from "./Login.module.css";
-import { IconAt, IconAlertTriangle } from "@tabler/icons-react";
+import { IconAt, IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 import { useState } from "react";
 import { api } from "../../api/axios-api";
 
 export function GetSupport() {
+  const [displayForm, setDisplayForm] = useState(true);
+  const [displaySuccess, setDisplaySuccess] = useState(false);
   const [displayAlert, setDisplayAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
 
@@ -19,6 +29,8 @@ export function GetSupport() {
 
     validate: {
       email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
+      subject: (value) => (value ? null : "Required"),
+      message: (value) => (value ? null : "Required"),
     },
   });
 
@@ -38,7 +50,8 @@ export function GetSupport() {
         message: form.message,
       })
       .then(({ data }) => {
-        console.log(data);
+        setDisplayForm(false);
+        setDisplaySuccess(true);
       })
       .catch((error) => {
         const message =
@@ -51,7 +64,11 @@ export function GetSupport() {
 
   return (
     <Flex align={"center"} justify={"center"} h={"100%"} flex={1}>
-      <Flex direction="column">
+      {/* Get Support Form */}
+      <Flex
+        style={{ display: displayForm ? "flex" : "none" }}
+        direction="column"
+      >
         <Text mb={30} c={"dimmed"} className={classes.subtitle}>
           Tell us about a problem you'd like to report or feedback you have
           about your experience.
@@ -118,6 +135,38 @@ export function GetSupport() {
           </Group>
         </form>
       </Flex>
+
+      {/* Reset Password Successful */}
+      <Group style={{ display: displaySuccess ? "block" : "none" }}>
+        <Transition
+          mounted={displaySuccess}
+          transition={"fade-right"}
+          duration={200}
+          timingFunction="ease"
+          keepMounted
+        >
+          {(transitionStyle) => (
+            <Group style={transitionStyle} mt={1} mb={5} gap={0}>
+              <ThemeIcon
+                className={classes.successMessage}
+                style={{
+                  display: displaySuccess ? "flex" : "none",
+                }}
+              >
+                <IconCheck strokeWidth={2.5} size={20} />
+              </ThemeIcon>
+              <Text
+                style={{
+                  display: displaySuccess ? "block" : "none",
+                }}
+                className={classes.successMessage}
+              >
+                Request Submitted Successfully
+              </Text>
+            </Group>
+          )}
+        </Transition>
+      </Group>
     </Flex>
   );
 }
