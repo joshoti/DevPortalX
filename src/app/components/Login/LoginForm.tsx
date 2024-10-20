@@ -6,18 +6,29 @@ import {
   Image,
   Text,
   Flex,
+  ThemeIcon,
+  Modal,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import loginArtBird from "../../assets/images/One-Line-bird.jpg";
+import loginArtBird from "../../assets/images/bird-no-bg.png";
 import classes from "./Login.module.css";
-import { IconAt, IconLockPassword } from "@tabler/icons-react";
+import {
+  IconAt,
+  IconLockPassword,
+  IconAlertTriangle,
+} from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import { api } from "../../api/axios-api";
 import { useState } from "react";
+import { GetSupport } from "./GetSupport";
+import { useDisclosure } from "@mantine/hooks";
+import { ForgotPassword } from "./ForgotPassword";
 
 export function LoginForm() {
   const [displayAlert, setDisplayAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [opened, { open, close }] = useDisclosure(false);
+  const [openedForgotPassword, setOpenForgotPassword] = useState(false);
 
   const form = useForm({
     mode: "uncontrolled",
@@ -41,7 +52,8 @@ export function LoginForm() {
         console.log(data);
       })
       .catch((error) => {
-        const message = error.response.data.message || "Unable to login";
+        console.log(error);
+        const message = error.response?.data.message || "Unable to login";
 
         setAlertMessage(message);
         setDisplayAlert(true);
@@ -49,7 +61,7 @@ export function LoginForm() {
   };
 
   return (
-    <Group gap={0} h={700}>
+    <Group gap={0} className={classes.pageContainer}>
       <Group
         h={"100%"}
         flex={0.75}
@@ -97,19 +109,30 @@ export function LoginForm() {
               key={form.key("password")}
               {...form.getInputProps("password")}
             />
-            <Text
-              style={{
-                color: "red",
-                display: displayAlert ? "block" : "none",
-                fontWeight: "bold",
-                margin: 0,
-              }}
-              children={alertMessage}
-            ></Text>
-
+            <Group mt={3} gap={0}>
+              <ThemeIcon
+                className={`${classes.errorMessage} ${classes.caution}`}
+                style={{
+                  display: displayAlert ? "flex" : "none",
+                }}
+              >
+                <IconAlertTriangle size={20} />
+              </ThemeIcon>
+              <Text
+                style={{
+                  display: displayAlert ? "block" : "none",
+                }}
+                className={classes.errorMessage}
+                children={alertMessage}
+              ></Text>
+            </Group>
             <Group justify="end">
               <Link className={classes.textLink} to="#">
-                <Text c={"dimmed"} className={classes.textLink}>
+                <Text
+                  onClick={() => setOpenForgotPassword(true)}
+                  c={"dimmed"}
+                  className={classes.textLink}
+                >
                   Forgot Password?
                 </Text>
               </Link>
@@ -131,12 +154,23 @@ export function LoginForm() {
           <Text span c={"dimmed"} className={classes.text}>
             Can't login?{" "}
             <Link className={classes.textLink} to="#">
-              <Text span className={classes.textLink}>
+              <Text onClick={open} span className={classes.textLink}>
                 Get support
               </Text>
             </Link>
           </Text>
         </Flex>
+        <Modal opened={opened} onClose={close} title="Support" centered>
+          <GetSupport />
+        </Modal>
+        <Modal
+          opened={openedForgotPassword}
+          onClose={() => setOpenForgotPassword(false)}
+          title="Forgot Password?"
+          centered
+        >
+          <ForgotPassword />
+        </Modal>
       </Flex>
     </Group>
   );

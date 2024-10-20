@@ -6,18 +6,27 @@ import {
   Image,
   Text,
   Flex,
+  ThemeIcon,
+  Modal,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import loginArtFlowers from "../../assets/images/one-line-art-girl-with-flowers.avif";
+import loginArtFlowers from "../../assets/images/hands-no-bg.png";
 import classes from "./Login.module.css";
-import { IconAt, IconLockPassword } from "@tabler/icons-react";
+import {
+  IconAt,
+  IconLockPassword,
+  IconAlertTriangle,
+} from "@tabler/icons-react";
+import { GetSupport } from "./GetSupport";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { api } from "../../api/axios-api";
+import { useDisclosure } from "@mantine/hooks";
 
 export function RegisterForm() {
   const [displayAlert, setDisplayAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const [opened, { open, close }] = useDisclosure(false);
 
   const form = useForm({
     mode: "uncontrolled",
@@ -43,7 +52,6 @@ export function RegisterForm() {
   };
 
   const handleSubmit = (form: SignUpT) => {
-    console.log(form);
     if (form.password !== form.confirmPassword) {
       setAlertMessage("Passwords don't match");
       setDisplayAlert(true);
@@ -59,7 +67,7 @@ export function RegisterForm() {
       })
       .catch((error) => {
         const message =
-          error.response.data.message || "Unable to create new account";
+          error.response?.data.message || "Unable to create new account";
 
         setAlertMessage(message);
         setDisplayAlert(true);
@@ -67,7 +75,7 @@ export function RegisterForm() {
   };
 
   return (
-    <Group gap={0} h={700}>
+    <Group gap={0} className={classes.pageContainer}>
       <Group
         h={"100%"}
         flex={0.75}
@@ -130,17 +138,26 @@ export function RegisterForm() {
               key={form.key("confirmPassword")}
               {...form.getInputProps("confirmPassword")}
             />
-            <Text
-              style={{
-                color: "red",
-                display: displayAlert ? "block" : "none",
-                fontWeight: "bold",
-                margin: 0,
-              }}
-              children={alertMessage}
-            ></Text>
 
-            <Group mt="xs" mb="md">
+            <Group mt={3} gap={0}>
+              <ThemeIcon
+                className={`${classes.errorMessage} ${classes.caution}`}
+                style={{
+                  display: displayAlert ? "flex" : "none",
+                }}
+              >
+                <IconAlertTriangle size={20} />
+              </ThemeIcon>
+              <Text
+                style={{
+                  display: displayAlert ? "block" : "none",
+                }}
+                className={classes.errorMessage}
+                children={alertMessage}
+              ></Text>
+            </Group>
+
+            <Group mt="lg" mb="md">
               <Button color="#5345c8" type="submit">
                 Register
               </Button>
@@ -157,12 +174,15 @@ export function RegisterForm() {
           <Text span c={"dimmed"} className={classes.text}>
             Can't create an account?{" "}
             <Link className={classes.textLink} to="#">
-              <Text span className={classes.textLink}>
+              <Text onClick={open} span className={classes.textLink}>
                 Get support
               </Text>
             </Link>
           </Text>
         </Flex>
+        <Modal opened={opened} onClose={close} title="Support" centered>
+          <GetSupport />
+        </Modal>
       </Flex>
     </Group>
   );
