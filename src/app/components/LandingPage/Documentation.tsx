@@ -11,9 +11,16 @@ import {
 import classes from "./LandingPage.module.css";
 
 export function Documentation() {
-  const docsContainerStyle = { gap: 33, marginTop: "lg" };
+  const docsContainerStyle = {
+    gap: "1.8vw",
+    marginTop: "lg",
+    alignItems: "flex-start",
+  };
   const docsCardContainerStyle = {
-    width: 380,
+    width: "25vw",
+    // width: 380,
+    minWidth: 300,
+    maxWidth: 380,
     marginBottom: "lg",
     shadow: "sm",
     padding: "lg",
@@ -88,13 +95,13 @@ export function Documentation() {
               </Box>
             </Card.Section>
             <Group justify="space-between" mt="md" mb="xs">
-              <Text className={classes.docsTitle}>Webhooks Integration</Text>
+              <Text className={classes.docsTitle}>Webhooks API</Text>
               <Badge color="pink">New!</Badge>
             </Group>
             <Text c="dimmed" className={classes.singleDocsText}>
-              Webhooks send real-time data to external systems, automating
-              processes and enabling efficient communication between
-              applications when specific events occur.
+              Webhooks send real-time data to external systems, enabling
+              efficient communication between applications when specific events
+              occur.
             </Text>
             <Button color="#5345c8" fullWidth mt="md" radius="md">
               Learn More
