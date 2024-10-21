@@ -28,7 +28,7 @@ export function Updates() {
         >
           <Timeline.Item
             bullet={<IconGitBranch size={iconSize} />}
-            title="Past [-1]"
+            title="Past [-2]"
           >
             <Text c="dimmed" size="lg">
               Created the Java backend API to support login and the creation of
@@ -42,12 +42,25 @@ export function Updates() {
 
           <Timeline.Item
             bullet={<IconGitCommit size={iconSize} />}
-            title="Present"
+            title="Past [-1]"
           >
             <Text c="dimmed" size="lg">
               Homepage, Login, and Registration UI pages mostly completed.
             </Text>
-            <Badge color="#FFBF00">Oct 6 - 10</Badge>
+            <Badge color="green">Oct 6 - 20</Badge>
+            <Badge ml={10} color="gray">
+              Had exams :D
+            </Badge>
+          </Timeline.Item>
+
+          <Timeline.Item
+            bullet={<IconGitCommit size={iconSize} />}
+            title="Present"
+          >
+            <Text c="dimmed" size="lg">
+              Handling login: displaying profile picture in header
+            </Text>
+            <Badge color="#FFBF00">Oct 20 - 24</Badge>
             <Badge ml={10} color="gray">
               In progress
             </Badge>
@@ -61,7 +74,7 @@ export function Updates() {
             <Text c="dimmed" size="lg">
               Create UI pages for the links in the Header.
             </Text>
-            <Badge color="pink">Anticipated start: Oct 12</Badge>
+            <Badge color="pink">Anticipated start: Oct 27</Badge>
           </Timeline.Item>
 
           <Timeline.Item
@@ -71,7 +84,7 @@ export function Updates() {
             <Text c="dimmed" size="lg">
               Create UI pages for the User's dashboard
             </Text>
-            <Badge color="pink">Anticipated start: Oct 18</Badge>
+            <Badge color="pink">Anticipated start: Nov 1</Badge>
           </Timeline.Item>
         </Timeline>
       </Group>
