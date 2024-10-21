@@ -1,7 +1,7 @@
-import { IconLogin2 } from "@tabler/icons-react";
-import { Group, Box, Text, Button, Container } from "@mantine/core";
+import { Group, Box, Text, Container } from "@mantine/core";
 import classes from "./Header.module.css";
 import { Link } from "react-router-dom";
+import { AccountState } from "./AccountState";
 
 export const Header = () => {
   return (
@@ -17,16 +17,7 @@ export const Header = () => {
           <Group className={`${classes.headerRight}`}>
             <Text className={`${classes.text}`}>Docs</Text>
             <Text className={`${classes.text}`}>Support</Text>
-            <Link to="/login">
-              <Button
-                radius={"md"}
-                variant="gradient"
-                gradient={{ from: "indigo", to: "violet", deg: 90 }}
-                leftSection={<IconLogin2 size={20} />}
-              >
-                <Text className={`${classes.getStarted}`}>Get Started</Text>
-              </Button>
-            </Link>
+            <AccountState />
           </Group>
         </Group>
       </Container>

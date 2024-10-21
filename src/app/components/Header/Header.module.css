@@ -1,7 +1,7 @@
 .title,
 .text,
 .getStarted {
-  color: var(--mantine-color-white);
+  color: white;
   cursor: pointer;
 }
 .title {
@@ -39,4 +39,16 @@
 
 .button {
   background: linear-gradient(90deg, #4b6cb7 10%, #253b67 90%);
+}
+
+.profilePictureContainer {
+  background-color: rgb(50, 50, 50);
+  /* background-color: whitesmoke; */
+  cursor: pointer;
+}
+.profilePictureText {
+  color: white;
+  /* color: black; */
+  font-weight: 850;
+  font-size: larger;
 }
