@@ -7,7 +7,6 @@ import {
   Text,
   Flex,
   ThemeIcon,
-  Modal,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import loginArtFlowers from "../../assets/images/hands-no-bg.png";
@@ -17,17 +16,14 @@ import {
   IconLockPassword,
   IconAlertTriangle,
 } from "@tabler/icons-react";
-import { GetSupport } from "./GetSupport";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api, fetchCsrfToken } from "../../api/axios-api";
-import { useDisclosure } from "@mantine/hooks";
 import { useAuth } from "../../hooks/useAuth";
 
 export function RegisterForm() {
   const [displayAlert, setDisplayAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [opened, { open, close }] = useDisclosure(false);
   const navigate = useNavigate();
   const authContext = useAuth();
 
@@ -184,16 +180,13 @@ export function RegisterForm() {
           </Text>
           <Text span c={"dimmed"} className={classes.text}>
             Can't create an account?{" "}
-            <Link className={classes.textLink} to="#">
-              <Text onClick={open} span className={classes.textLink}>
+            <Link className={classes.textLink} to="/support">
+              <Text span className={classes.textLink}>
                 Get support
               </Text>
             </Link>
           </Text>
         </Flex>
-        <Modal opened={opened} onClose={close} title="Support" centered>
-          <GetSupport />
-        </Modal>
       </Flex>
     </Group>
   );

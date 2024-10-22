@@ -20,8 +20,6 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { api, fetchCsrfToken } from "../../api/axios-api";
 import { useState } from "react";
-import { GetSupport } from "./GetSupport";
-import { useDisclosure } from "@mantine/hooks";
 import { ForgotPassword } from "./ForgotPassword";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -29,8 +27,7 @@ export function LoginForm() {
   const navigate = useNavigate();
   const [displayAlert, setDisplayAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-  const [opened, { open, close }] = useDisclosure(false);
-  const [openedForgotPassword, setOpenForgotPassword] = useState(false);
+  const [openForgotPassword, setOpenForgotPassword] = useState(false);
 
   const form = useForm({
     mode: "uncontrolled",
@@ -165,18 +162,15 @@ export function LoginForm() {
           </Text>
           <Text span c={"dimmed"} className={classes.text}>
             Can't login?{" "}
-            <Link className={classes.textLink} to="#">
-              <Text onClick={open} span className={classes.textLink}>
+            <Link className={classes.textLink} to="/support">
+              <Text span className={classes.textLink}>
                 Get support
               </Text>
             </Link>
           </Text>
         </Flex>
-        <Modal opened={opened} onClose={close} title="Support" centered>
-          <GetSupport />
-        </Modal>
         <Modal
-          opened={openedForgotPassword}
+          opened={openForgotPassword}
           onClose={() => setOpenForgotPassword(false)}
           title="Forgot Password?"
           centered
