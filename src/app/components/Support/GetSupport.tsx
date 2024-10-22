@@ -6,12 +6,15 @@ import {
   Flex,
   ThemeIcon,
   Transition,
+  Title,
+  Textarea,
+  FileInput,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import classes from "./Login.module.css";
+import classes from "./Support.module.css";
 import { IconAt, IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 import { useState } from "react";
-import { api } from "../../api/axios-api";
+import { api, fetchCsrfToken } from "../../api/axios-api";
 
 export function GetSupport() {
   const [displayForm, setDisplayForm] = useState(true);
@@ -25,6 +28,7 @@ export function GetSupport() {
       email: "",
       subject: "",
       message: "",
+      attachment: null,
     },
 
     validate: {
@@ -34,22 +38,21 @@ export function GetSupport() {
     },
   });
 
-  const textInputStyle = { width: 400 };
+  // const textInputStyle = { width: 400 };
   const inputFieldIconStyle = { size: 18, stroke: 1.5 };
   type SupportT = {
     email: string;
     subject: string;
     message: string;
+    attachment: Blob | null;
   };
 
-  const handleSubmit = (form: SupportT) => {
+  const handleSubmit = async (form: SupportT) => {
+    const csrfToken = await fetchCsrfToken();
+
     api
-      .post("/api/users/support-request", {
-        email: form.email,
-        subject: form.subject,
-        message: form.message,
-      })
-      .then(({ data }) => {
+      .post("/api/support", form, { headers: { "X-CSRF-TOKEN": csrfToken } })
+      .then(() => {
         setDisplayForm(false);
         setDisplaySuccess(true);
       })
@@ -69,6 +72,9 @@ export function GetSupport() {
         style={{ display: displayForm ? "flex" : "none" }}
         direction="column"
       >
+        <Title mt={30} className={classes.title}>
+          Support
+        </Title>
         <Text mb={30} c={"dimmed"} className={classes.subtitle}>
           Tell us about a problem you'd like to report or feedback you have
           about your experience.
@@ -81,7 +87,6 @@ export function GetSupport() {
                 size={inputFieldIconStyle.size}
               />
             }
-            style={textInputStyle}
             withAsterisk
             mb={15}
             size="md"
@@ -91,7 +96,6 @@ export function GetSupport() {
             {...form.getInputProps("email")}
           />
           <TextInput
-            style={textInputStyle}
             withAsterisk
             mb={15}
             size="md"
@@ -100,14 +104,22 @@ export function GetSupport() {
             key={form.key("subject")}
             {...form.getInputProps("subject")}
           />
-          <TextInput
-            style={textInputStyle}
+          <Textarea
             withAsterisk
+            mb={15}
             size="md"
             label="How can we help?"
             placeholder="Message"
             key={form.key("message")}
             {...form.getInputProps("message")}
+          />
+          <FileInput
+            size="md"
+            label="Attachments"
+            description="Optional"
+            placeholder="Drag or Click to upload attachments"
+            variant="filled"
+            // h={300}
           />
 
           <Group mt={3} gap={0}>
@@ -136,7 +148,7 @@ export function GetSupport() {
         </form>
       </Flex>
 
-      {/* Reset Password Successful */}
+      {/* Request Submit Successful */}
       <Group style={{ display: displaySuccess ? "block" : "none" }}>
         <Transition
           mounted={displaySuccess}
