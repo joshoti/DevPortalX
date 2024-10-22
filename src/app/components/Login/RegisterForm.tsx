@@ -19,14 +19,17 @@ import {
 } from "@tabler/icons-react";
 import { GetSupport } from "./GetSupport";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { api } from "../../api/axios-api";
+import { Link, useNavigate } from "react-router-dom";
+import { api, fetchCsrfToken } from "../../api/axios-api";
 import { useDisclosure } from "@mantine/hooks";
+import { useAuth } from "../../hooks/useAuth";
 
 export function RegisterForm() {
   const [displayAlert, setDisplayAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [opened, { open, close }] = useDisclosure(false);
+  const navigate = useNavigate();
+  const authContext = useAuth();
 
   const form = useForm({
     mode: "uncontrolled",
@@ -51,19 +54,27 @@ export function RegisterForm() {
     confirmPassword: string;
   };
 
-  const handleSubmit = (form: SignUpT) => {
+  const handleSubmit = async (form: SignUpT) => {
     if (form.password !== form.confirmPassword) {
       setAlertMessage("Passwords don't match");
       setDisplayAlert(true);
       return;
     }
+    const csrfToken = await fetchCsrfToken();
+
     api
-      .post("/api/users/register", {
-        email: form.email,
-        password: form.password,
-      })
+      .post(
+        "/api/users/register",
+        {
+          email: form.email,
+          password: form.password,
+        },
+        { headers: { "X-CSRF-TOKEN": csrfToken } }
+      )
       .then(({ data }) => {
         console.log(data);
+        authContext?.setAuth(data);
+        navigate("/", { replace: true });
       })
       .catch((error) => {
         const message =

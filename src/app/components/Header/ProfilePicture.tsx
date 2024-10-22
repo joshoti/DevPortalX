@@ -2,20 +2,33 @@ import { Flex, Menu, Paper, rem, Text } from "@mantine/core";
 import { useAuth } from "../../hooks/useAuth";
 import classes from "./Header.module.css";
 import {
-  IconArrowsLeftRight,
-  IconMessageCircle,
-  IconPhoto,
-  IconSearch,
+  IconAppWindow,
+  IconLogout,
+  IconNotification,
   IconSettings,
-  IconTrash,
 } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
+import { api, fetchCsrfToken } from "../../api/axios-api";
 
 export function ProfilePicture() {
-  const authContext = useAuth();
   const backgroundRadius = 40;
   const profilePictureContainerStyle = {
     height: backgroundRadius,
     width: backgroundRadius,
+  };
+  const authContext = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    const csrfToken = await fetchCsrfToken();
+
+    api.post(
+      "/api/users/logout",
+      {},
+      { headers: { "X-CSRF-TOKEN": csrfToken } }
+    );
+    authContext.setAuth(null);
+    navigate("/", { replace: true });
   };
 
   return (
@@ -29,7 +42,7 @@ export function ProfilePicture() {
           >
             <Text
               className={classes.profilePictureText}
-            >{`${authContext.auth?.firstName[0]}${authContext.auth?.lastName[0]}`}</Text>
+            >{`${authContext.auth?.email[0].toUpperCase()}`}</Text>
           </Flex>
         </Paper>
       </Menu.Target>
@@ -38,36 +51,17 @@ export function ProfilePicture() {
         <Menu.Label>Application</Menu.Label>
         <Menu.Item
           leftSection={
-            <IconSettings style={{ width: rem(14), height: rem(14) }} />
+            <IconAppWindow style={{ width: rem(14), height: rem(14) }} />
           }
         >
-          Settings
+          Manage Apps
         </Menu.Item>
         <Menu.Item
           leftSection={
-            <IconMessageCircle style={{ width: rem(14), height: rem(14) }} />
+            <IconNotification style={{ width: rem(14), height: rem(14) }} />
           }
         >
-          Messages
-        </Menu.Item>
-        <Menu.Item
-          leftSection={
-            <IconPhoto style={{ width: rem(14), height: rem(14) }} />
-          }
-        >
-          Gallery
-        </Menu.Item>
-        <Menu.Item
-          leftSection={
-            <IconSearch style={{ width: rem(14), height: rem(14) }} />
-          }
-          rightSection={
-            <Text size="xs" c="dimmed">
-              ⌘K
-            </Text>
-          }
-        >
-          Search
+          Notifications
         </Menu.Item>
 
         <Menu.Divider />
@@ -75,15 +69,16 @@ export function ProfilePicture() {
         <Menu.Label>Account</Menu.Label>
         <Menu.Item
           leftSection={
-            <IconArrowsLeftRight style={{ width: rem(14), height: rem(14) }} />
+            <IconSettings style={{ width: rem(14), height: rem(14) }} />
           }
         >
           Account Settings
         </Menu.Item>
         <Menu.Item
+          onClick={handleLogout}
           color="red"
           leftSection={
-            <IconTrash style={{ width: rem(14), height: rem(14) }} />
+            <IconLogout style={{ width: rem(14), height: rem(14) }} />
           }
         >
           Logout

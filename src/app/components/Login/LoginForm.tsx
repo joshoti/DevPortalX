@@ -17,14 +17,16 @@ import {
   IconLockPassword,
   IconAlertTriangle,
 } from "@tabler/icons-react";
-import { Link } from "react-router-dom";
-import { api } from "../../api/axios-api";
+import { Link, useNavigate } from "react-router-dom";
+import { api, fetchCsrfToken } from "../../api/axios-api";
 import { useState } from "react";
 import { GetSupport } from "./GetSupport";
 import { useDisclosure } from "@mantine/hooks";
 import { ForgotPassword } from "./ForgotPassword";
+import { useAuth } from "../../hooks/useAuth";
 
 export function LoginForm() {
+  const navigate = useNavigate();
   const [displayAlert, setDisplayAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [opened, { open, close }] = useDisclosure(false);
@@ -38,6 +40,8 @@ export function LoginForm() {
     },
   });
 
+  const authContext = useAuth();
+
   const textInputStyle = { width: 400 };
   const inputFieldIconStyle = { size: 18, stroke: 1.5 };
   type LoginT = {
@@ -45,11 +49,19 @@ export function LoginForm() {
     password: string;
   };
 
-  const handleSubmit = (form: LoginT) => {
+  const handleSubmit = async (form: LoginT) => {
+    const csrfToken = await fetchCsrfToken();
+
     api
-      .post("/api/users/login", { email: form.email, password: form.password })
+      .post(
+        "/api/users/login",
+        { email: form.email, password: form.password },
+        { headers: { "X-CSRF-TOKEN": csrfToken } }
+      )
       .then(({ data }) => {
         console.log(data);
+        authContext?.setAuth(data);
+        navigate("/", { replace: true });
       })
       .catch((error) => {
         console.log(error);
