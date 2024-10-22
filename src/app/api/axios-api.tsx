@@ -10,3 +10,9 @@ export const api = axios.create({
   },
   withCredentials: true,
 });
+
+export const fetchCsrfToken = async () => {
+  const response = await api.get("/api/csrf-token");
+  const csrfToken = response.data.token;
+  return csrfToken;
+};
