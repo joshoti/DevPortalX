@@ -3,12 +3,12 @@
 .getStarted {
   color: white;
   cursor: pointer;
+  text-decoration: none;
 }
 .title {
   font-size: 25px;
   font-weight: 850;
   letter-spacing: -0.5px;
-  text-decoration: none;
 }
 .text {
   font-size: 20px;
@@ -51,4 +51,7 @@
   /* color: black; */
   font-weight: 850;
   font-size: larger;
+}
+.profilePictureText::selection {
+  background: transparent;
 }
