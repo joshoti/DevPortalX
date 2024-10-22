@@ -15,10 +15,10 @@ export const Header = () => {
           </Group>
 
           <Group className={`${classes.headerRight}`}>
-            <Link className={`${classes.text}`} to="docs">
+            <Link className={`${classes.text}`} to="/docs">
               <Text className={`${classes.text}`}>Docs</Text>
             </Link>
-            <Link className={`${classes.text}`} to="support">
+            <Link className={`${classes.text}`} to="/support">
               <Text className={`${classes.text}`}>Support</Text>
             </Link>
             <AccountState />
