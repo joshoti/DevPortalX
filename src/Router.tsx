@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Docs } from "./app/pages/Docs";
+import { DocsTest } from "./app/pages/Docs";
 import { HomePage } from "./app/pages/Home";
 import { Login } from "./app/pages/Login";
 import { Register } from "./app/pages/Register";
@@ -19,8 +19,12 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "/docs",
-    element: <Docs />,
+    path: "/docs/overview",
+    element: <DocsTest />,
+  },
+  {
+    path: "/docs/login-api",
+    element: <DocsTest />,
   },
   {
     path: "/support",
