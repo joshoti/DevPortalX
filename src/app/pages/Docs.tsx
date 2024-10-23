@@ -1,12 +1,17 @@
 import { Footer } from "../components/Footer/Footer";
 import { Header } from "../components/Header/Header";
-import { Documentation } from "../components/LandingPage/Documentation";
+import { DocsMenu } from "../components/Docs/DocsMenu";
+import { DocsLogin } from "../components/Docs/DocsLogin";
+import { Flex } from "@mantine/core";
 
-export function Docs() {
+export function DocsTest() {
   return (
     <>
       <Header />
-      <Documentation />
+      <Flex>
+        <DocsMenu />
+        <DocsLogin />
+      </Flex>
       <Footer />
     </>
   );
