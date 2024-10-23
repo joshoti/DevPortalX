@@ -14,7 +14,7 @@ import classes from "./Docs.module.css";
 import { IconAt, IconSend } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
-export function DocsOverview() {
+export function DocsAnalytics() {
   const paperStyle = { radius: 40 };
   const successIconSize = 70;
   const textInputRadius = "md";
@@ -25,7 +25,7 @@ export function DocsOverview() {
       {/* Documentation page */}
       <Flex flex={1} direction="column">
         <Title mt={30} className={classes.title}>
-          Overview
+          Analytics
         </Title>
         <Text mb={30} className={classes.subtitle}>
           Tell us about a problem you'd like to report or feedback you have
