@@ -1,8 +1,7 @@
-.pageContainer {
-  height: 750px;
-}
-.loginDecorationContainer {
+.singlePaperContainer {
   background-color: whitesmoke;
+  padding: 30px;
+  margin-bottom: 30px;
 }
 .title {
   font-size: 45px;
@@ -12,22 +11,14 @@
   font-size: 20px;
   font-weight: 400;
 }
-.text,
-.textLink {
-  font-size: 17px;
+.singlePaperTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
 }
-
-.text {
-  font-weight: 400;
-}
-
-.textLink {
-  text-decoration: none;
-  color: "#5345c8";
-  font-weight: bold;
-}
-.textLink:hover {
-  text-decoration: underline;
+.singlePaperDescription {
+  font-weight: 460;
+  margin-bottom: 10px;
 }
 
 .errorMessage {
@@ -37,10 +28,15 @@
   font-weight: bold;
 }
 
+.successTitle {
+  font-size: 45px;
+  color: white;
+  font-weight: bold;
+}
 .successMessage {
-  margin: 0;
-  color: green;
-  background-color: white;
+  font-size: 30px;
+  color: black;
+  background-color: transparent;
   font-weight: bold;
 }
 
