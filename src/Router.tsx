@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { DocumentationLayout } from "./app/pages/Docs";
 import { HomePage } from "./app/pages/Home";
@@ -11,6 +10,7 @@ import { DocsOverview } from "./app/components/Docs/DocsOverview";
 import { DocsLogin } from "./app/components/Docs/DocsLogin";
 import { DocsWebhooks } from "./app/components/Docs/DocsWebhooks";
 import { DocsAnalytics } from "./app/components/Docs/DocsAnalytics";
+import { ScrollToTop } from "./app/utils/scoll";
 
 export function Router() {
   return (
@@ -31,14 +31,4 @@ export function Router() {
       </Routes>
     </BrowserRouter>
   );
-}
-
-export default function ScrollToTop() {
-  const { pathname } = useLocation();
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-
-  return null;
 }
