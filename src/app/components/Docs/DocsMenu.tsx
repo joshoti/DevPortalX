@@ -1,4 +1,4 @@
-import { Flex, ScrollArea, Tabs } from "@mantine/core";
+import { Flex, Tabs } from "@mantine/core";
 import classes from "./Docs.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -19,261 +19,56 @@ export function DocsMenu() {
   const useCaseTabStyle = { height: "50px" };
 
   return (
-    <Flex
-      w={350}
-      m={20}
-      h={"100%"}
-      direction={"column"}
-      className={classes.menuContainer}
-    >
-      <ScrollArea>
-        {/* Menu */}
-        <Tabs
-          color="rgb(220, 220, 220)"
-          radius={10}
-          orientation="vertical"
-          variant="pills"
-          defaultValue="overview"
-        >
-          <Tabs.List w={"100%"}>
-            {/* 1 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("overview")}
-              style={useCaseTabStyle}
-              value="overview"
-              className={styleActiveTab("overview")}
-            >
-              Overview
-            </Tabs.Tab>
+    <Flex w={350} h={"100%"} direction={"column"}>
+      <Tabs
+        color="rgb(220, 220, 220)"
+        radius={10}
+        orientation="vertical"
+        variant="pills"
+        defaultValue="overview"
+      >
+        <Tabs.List w={"100%"}>
+          {/* 1 */}
+          <Tabs.Tab
+            onFocus={() => setActiveTabAndNavigate("overview")}
+            style={useCaseTabStyle}
+            value="overview"
+            className={styleActiveTab("overview")}
+          >
+            Overview
+          </Tabs.Tab>
 
-            {/* 2 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("login")}
-              style={useCaseTabStyle}
-              value="login"
-              className={styleActiveTab("login")}
-            >
-              Login SSO
-            </Tabs.Tab>
+          {/* 2 */}
+          <Tabs.Tab
+            onFocus={() => setActiveTabAndNavigate("login")}
+            style={useCaseTabStyle}
+            value="login"
+            className={styleActiveTab("login")}
+          >
+            Login SSO
+          </Tabs.Tab>
 
-            {/* 3 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("webhooks")}
-              style={useCaseTabStyle}
-              value="webhooks"
-              className={styleActiveTab("webhooks")}
-            >
-              Webhooks
-            </Tabs.Tab>
+          {/* 3 */}
+          <Tabs.Tab
+            onFocus={() => setActiveTabAndNavigate("webhooks")}
+            style={useCaseTabStyle}
+            value="webhooks"
+            className={styleActiveTab("webhooks")}
+          >
+            Webhooks
+          </Tabs.Tab>
 
-            {/* 4 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("analytics")}
-              style={useCaseTabStyle}
-              value="analytics"
-              className={styleActiveTab("analytics")}
-            >
-              Real-time Analytics
-            </Tabs.Tab>
-            {/* del */}
-            {/* 1 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("overview")}
-              style={useCaseTabStyle}
-              value="overview"
-              className={styleActiveTab("overview")}
-            >
-              Overview
-            </Tabs.Tab>
-
-            {/* 2 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("login")}
-              style={useCaseTabStyle}
-              value="login"
-              className={styleActiveTab("login")}
-            >
-              Login SSO
-            </Tabs.Tab>
-
-            {/* 3 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("webhooks")}
-              style={useCaseTabStyle}
-              value="webhooks"
-              className={styleActiveTab("webhooks")}
-            >
-              Webhooks
-            </Tabs.Tab>
-
-            {/* 4 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("analytics")}
-              style={useCaseTabStyle}
-              value="analytics"
-              className={styleActiveTab("analytics")}
-            >
-              Real-time Analytics
-            </Tabs.Tab>
-            {/* 1 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("overview")}
-              style={useCaseTabStyle}
-              value="overview"
-              className={styleActiveTab("overview")}
-            >
-              Overview
-            </Tabs.Tab>
-
-            {/* 2 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("login")}
-              style={useCaseTabStyle}
-              value="login"
-              className={styleActiveTab("login")}
-            >
-              Login SSO
-            </Tabs.Tab>
-
-            {/* 3 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("webhooks")}
-              style={useCaseTabStyle}
-              value="webhooks"
-              className={styleActiveTab("webhooks")}
-            >
-              Webhooks
-            </Tabs.Tab>
-
-            {/* 4 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("analytics")}
-              style={useCaseTabStyle}
-              value="analytics"
-              className={styleActiveTab("analytics")}
-            >
-              Real-time Analytics
-            </Tabs.Tab>
-            {/* 1 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("overview")}
-              style={useCaseTabStyle}
-              value="overview"
-              className={styleActiveTab("overview")}
-            >
-              Overview
-            </Tabs.Tab>
-
-            {/* 2 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("login")}
-              style={useCaseTabStyle}
-              value="login"
-              className={styleActiveTab("login")}
-            >
-              Login SSO
-            </Tabs.Tab>
-
-            {/* 3 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("webhooks")}
-              style={useCaseTabStyle}
-              value="webhooks"
-              className={styleActiveTab("webhooks")}
-            >
-              Webhooks
-            </Tabs.Tab>
-
-            {/* 4 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("analytics")}
-              style={useCaseTabStyle}
-              value="analytics"
-              className={styleActiveTab("analytics")}
-            >
-              Real-time Analytics
-            </Tabs.Tab>
-            {/* 1 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("overview")}
-              style={useCaseTabStyle}
-              value="overview"
-              className={styleActiveTab("overview")}
-            >
-              Overview
-            </Tabs.Tab>
-
-            {/* 2 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("login")}
-              style={useCaseTabStyle}
-              value="login"
-              className={styleActiveTab("login")}
-            >
-              Login SSO
-            </Tabs.Tab>
-
-            {/* 3 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("webhooks")}
-              style={useCaseTabStyle}
-              value="webhooks"
-              className={styleActiveTab("webhooks")}
-            >
-              Webhooks
-            </Tabs.Tab>
-
-            {/* 4 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("analytics")}
-              style={useCaseTabStyle}
-              value="analytics"
-              className={styleActiveTab("analytics")}
-            >
-              Real-time Analytics
-            </Tabs.Tab>
-            {/* 1 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("overview")}
-              style={useCaseTabStyle}
-              value="overview"
-              className={styleActiveTab("overview")}
-            >
-              Overview
-            </Tabs.Tab>
-
-            {/* 2 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("login")}
-              style={useCaseTabStyle}
-              value="login"
-              className={styleActiveTab("login")}
-            >
-              Login SSO
-            </Tabs.Tab>
-
-            {/* 3 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("webhooks")}
-              style={useCaseTabStyle}
-              value="webhooks"
-              className={styleActiveTab("webhooks")}
-            >
-              Webhooks
-            </Tabs.Tab>
-
-            {/* 4 */}
-            <Tabs.Tab
-              onFocus={() => setActiveTabAndNavigate("analytics")}
-              style={useCaseTabStyle}
-              value="analytics"
-              className={styleActiveTab("analytics")}
-            >
-              Real-time Analytics
-            </Tabs.Tab>
-          </Tabs.List>
-        </Tabs>
-      </ScrollArea>
+          {/* 4 */}
+          <Tabs.Tab
+            onFocus={() => setActiveTabAndNavigate("analytics")}
+            style={useCaseTabStyle}
+            value="analytics"
+            className={styleActiveTab("analytics")}
+          >
+            Real-time Analytics
+          </Tabs.Tab>
+        </Tabs.List>
+      </Tabs>
     </Flex>
   );
 }

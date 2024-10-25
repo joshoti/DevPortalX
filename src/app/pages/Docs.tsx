@@ -7,12 +7,14 @@ export function DocumentationLayout() {
   return (
     <>
       <Header />
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", height: "100vh" }}>
         {/* Constant left-side menu */}
-        <DocsMenu />
+        <div style={{ padding: "20px", overflowY: "auto" }}>
+          <DocsMenu />
+        </div>
 
         {/* Right-side dynamic content */}
-        <div style={{ flex: 1, padding: "20px", position: "sticky", top: 80 }}>
+        <div style={{ flex: 1, padding: "20px", overflowY: "auto" }}>
           <Outlet />
         </div>
       </div>

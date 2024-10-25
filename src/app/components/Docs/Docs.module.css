@@ -10,14 +10,3 @@
 .focus {
   font-weight: bold;
 }
-
-.pageContainer {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 70px; /* required */
-}
-.menuContainer {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 80px; /* required */
-}
