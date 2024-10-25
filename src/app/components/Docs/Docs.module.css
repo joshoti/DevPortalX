@@ -1,3 +1,10 @@
+.title {
+  letter-spacing: -1px;
+  font-size: 45px;
+}
+.regularText {
+  font-size: 18px;
+}
 .tabs:hover {
   background-color: whitesmoke;
 }
@@ -9,4 +16,20 @@
 }
 .focus {
   font-weight: bold;
+}
+.tableOfContentTitle {
+  font-weight: bold;
+  font-size: 20px;
+}
+.tableOfContentText {
+  font-size: 16px;
+  margin-bottom: 5px;
+  color: dimgray;
+  cursor: pointer;
+}
+.tableOfContentText:hover {
+  color: black;
+}
+.tocContainer {
+  padding: 0px 20px 0px 20px;
 }
