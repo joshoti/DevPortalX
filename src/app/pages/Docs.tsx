@@ -22,5 +22,3 @@ export function DocumentationLayout() {
     </>
   );
 }
-
-export default DocumentationLayout;

@@ -19,7 +19,7 @@ export function DocsMenu() {
   const useCaseTabStyle = { height: "50px" };
 
   return (
-    <Flex w={350} h={"100%"} direction={"column"}>
+    <Flex w={350} direction={"column"}>
       <Tabs
         color="rgb(220, 220, 220)"
         radius={10}
