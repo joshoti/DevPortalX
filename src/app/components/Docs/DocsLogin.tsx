@@ -11,15 +11,11 @@ import {
 import classes from "./Docs.module.css";
 import { IconAt } from "@tabler/icons-react";
 import { useEffect } from "react";
+import { scrollBehavior } from "../../pages/Docs";
 
 export function DocsLogin() {
   // To scroll to the top manually
   useEffect(() => {
-    const scrollBehavior: Object = {
-      behavior: "instant",
-      block: "end",
-    };
-
     const head = document.getElementById("head");
     head?.scrollIntoView(scrollBehavior);
   });

@@ -3,6 +3,11 @@ import { DocsMenu } from "../components/Docs/DocsMenu";
 import { Footer } from "../components/Footer/Footer";
 import { Header } from "../components/Header/Header";
 
+export const scrollBehavior: ScrollIntoViewOptions = {
+  behavior: "instant",
+  block: "end",
+};
+
 export function DocumentationLayout() {
   return (
     <>
