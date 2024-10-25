@@ -4,7 +4,7 @@ import { Footer } from "../components/Footer/Footer";
 import { Header } from "../components/Header/Header";
 
 export const scrollBehavior: ScrollIntoViewOptions = {
-  behavior: "instant",
+  behavior: "auto",
   block: "end",
 };
 
