@@ -3,26 +3,12 @@ import classes from "./LandingPage.module.css";
 import loginIcon from "../../assets/images/login-icon.png";
 import webhookIcon from "../../assets/images/webhooks.png";
 import analyticsIcon from "../../assets/images/analytics.png";
+import { scrollToElement } from "../../utils/scoll";
 
 export function UseCase() {
   const useCaseTabStyle = { height: "50px" };
   const useCasePaperSize = { height: 80, width: 80 };
-  const scrollBehavior: Object = {
-    behavior: "smooth",
-    block: "center",
-  };
-  const scrollToLoginSSO = () => {
-    const supportSection = document.getElementById("loginsso");
-    supportSection?.scrollIntoView(scrollBehavior);
-  };
-  const scrollToWebhook = () => {
-    const supportSection = document.getElementById("webhook");
-    supportSection?.scrollIntoView(scrollBehavior);
-  };
-  const scrollToAnalytics = () => {
-    const supportSection = document.getElementById("analytics");
-    supportSection?.scrollIntoView(scrollBehavior);
-  };
+
   return (
     <Box className={classes.container}>
       <Group gap={"8vw"} mt={"xl"} align="flex-start" justify="space-between">
@@ -43,7 +29,7 @@ export function UseCase() {
           >
             <Tabs.List w={"100%"}>
               <Tabs.Tab
-                onClick={scrollToLoginSSO}
+                onClick={() => scrollToElement("loginsso")}
                 style={useCaseTabStyle}
                 value="login"
                 className={`${classes.singleUseCaseTitle} ${classes.tabs}`}
@@ -51,7 +37,7 @@ export function UseCase() {
                 Login SSO
               </Tabs.Tab>
               <Tabs.Tab
-                onClick={scrollToWebhook}
+                onClick={() => scrollToElement("webhook")}
                 style={useCaseTabStyle}
                 value="webhooks"
                 className={`${classes.singleUseCaseTitle} ${classes.tabs}`}
@@ -59,7 +45,7 @@ export function UseCase() {
                 Webhooks
               </Tabs.Tab>
               <Tabs.Tab
-                onClick={scrollToAnalytics}
+                onClick={() => scrollToElement("analytics")}
                 style={useCaseTabStyle}
                 value="analytics"
                 className={`${classes.singleUseCaseTitle} ${classes.tabs}`}
