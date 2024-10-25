@@ -3,7 +3,7 @@ import { DocsMenu } from "../components/Docs/DocsMenu";
 import { Footer } from "../components/Footer/Footer";
 import { Header } from "../components/Header/Header";
 
-export const scrollBehavior: ScrollIntoViewOptions = {
+export const docsScrollOptions: ScrollIntoViewOptions = {
   behavior: "auto",
   block: "end",
 };

@@ -11,13 +11,13 @@ import {
 import classes from "./Docs.module.css";
 import { IconAt } from "@tabler/icons-react";
 import { useEffect } from "react";
-import { scrollBehavior } from "../../pages/Docs";
+import { docsScrollOptions } from "../../pages/Docs";
+import { scrollToElement } from "../../utils/scoll";
 
 export function DocsWebhooks() {
   // To scroll to the top manually
   useEffect(() => {
-    const head = document.getElementById("head");
-    head?.scrollIntoView(scrollBehavior);
+    scrollToElement("head", docsScrollOptions);
   });
 
   const paperStyle = { radius: 40 };
