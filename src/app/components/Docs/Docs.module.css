@@ -33,3 +33,28 @@
 .tocContainer {
   padding: 0px 20px 0px 20px;
 }
+.codeContainer {
+  overflow: visible;
+  background-color: "#f1f3f5";
+  padding: 10px;
+
+  border: 1px solid rgb(226, 226, 226);
+}
+.code {
+  font-family: Courier, monospace;
+  font-size: 15px;
+}
+.codeIndent {
+  margin-left: 45px;
+}
+.codeRed {
+  color: red;
+}
+.codeGreen {
+  color: green;
+}
+.table {
+  border: 1px solid rgb(228, 228, 228);
+  border-radius: 7px 7px;
+  margin-bottom: 20px;
+}
