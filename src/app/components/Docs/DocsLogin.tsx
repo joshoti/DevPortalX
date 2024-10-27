@@ -1,105 +1,155 @@
-import {
-  Button,
-  Group,
-  TextInput,
-  Text,
-  Flex,
-  Title,
-  Textarea,
-  Paper,
-} from "@mantine/core";
+import { Text, Flex, Title, Table, Space, Box, Paper } from "@mantine/core";
 import classes from "./Docs.module.css";
-import { IconAt } from "@tabler/icons-react";
 import { useEffect } from "react";
-import { docsScrollOptions } from "../../pages/Docs";
+import { docsScrollOptions, localUrl } from "../../pages/Docs";
+import { scrollToElement } from "../../utils/scoll";
 
 export function DocsLogin() {
   // To scroll to the top manually
   useEffect(() => {
-    const head = document.getElementById("head");
-    head?.scrollIntoView(docsScrollOptions);
+    scrollToElement("head", docsScrollOptions);
   });
 
-  const paperStyle = { radius: 40 };
-  const textInputRadius = "md";
-  const inputFieldIconStyle = { size: 18, stroke: 1.5 };
+  const errors = [
+    { code: 200, response: "Ok", description: "Login flow was successful" },
+    {
+      code: 400,
+      response: "Bad Request",
+      description:
+        "Typically occurs if a required parameter is missing or malformed",
+    },
+    {
+      code: 401,
+      response: "Unauthorized",
+      description: "Invalid credentials or missing authentication token",
+    },
+    {
+      code: 403,
+      response: "Forbidden",
+      description: "Access denied due to insufficient permissions",
+    },
+    {
+      code: 429,
+      response: "Rate Limit Exceeded",
+      description: "Access denied due to insufficient permissions",
+    },
+    {
+      code: 500,
+      response: "Internal Server Error",
+      description: "A server issue that may require retrying later",
+    },
+  ];
+
+  const errorTableRows = errors.map((error) => (
+    <Table.Tr key={error.code}>
+      <Table.Td>{error.code}</Table.Td>
+      <Table.Td>{error.response}</Table.Td>
+      <Table.Td>{error.description}</Table.Td>
+    </Table.Tr>
+  ));
+
+  const marginTop = 40;
 
   return (
     <Flex h={"100%"}>
-      {/* Documentation page */}
+      {/* Content section */}
       <Flex flex={1} direction="column">
-        <Title id="head" mt={30} className={classes.title}>
-          Login
+        <Title
+          id="head"
+          mt={marginTop}
+          mb={marginTop / 2}
+          className={classes.title}
+        >
+          OAuth 2.0 API
         </Title>
-        <Text mb={30} className={classes.subtitle}>
-          Tell us about a problem you'd like to report or feedback you have
-          about your experience.
+        <Text mb={10} className={classes.regularText}>
+          Integrate the Login API to authenticate users and manage their
+          sessions securely.
         </Text>
-        <Flex direction="column">
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text className={classes.singlePaperTitle}>
-              Contact Information
-            </Text>
-            <TextInput
-              leftSection={
-                <IconAt
-                  stroke={inputFieldIconStyle.stroke}
-                  size={inputFieldIconStyle.size}
-                />
-              }
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="Email Address"
-              placeholder="your@email.com"
-            />
-          </Paper>
+        <Title
+          id="prerequisites"
+          mt={marginTop}
+          mb={marginTop / 2}
+          className={classes.title}
+        >
+          Prerequisites
+        </Title>
+        <Text mb={10} className={classes.regularText}>
+          Step by step guide to set up your login flow
+        </Text>
 
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text className={classes.singlePaperTitle}>Feedback</Text>
-            <TextInput
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="Subject"
-              placeholder="Subject"
-            />
-            <Textarea
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="How can we help?"
-              placeholder="Message"
-            />
-          </Paper>
+        <Title
+          id="errorCodes"
+          mt={marginTop}
+          mb={marginTop / 2}
+          className={classes.title}
+        >
+          Error Codes
+        </Title>
+        <Text mb={10} className={classes.regularText}>
+          Below are error codes you might encounter and what they mean:
+        </Text>
+        <Box className={classes.table}>
+          <Table verticalSpacing="sm" horizontalSpacing="md">
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th>Status Code</Table.Th>
+                <Table.Th>Status Response</Table.Th>
+                <Table.Th>Description</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>{errorTableRows}</Table.Tbody>
+          </Table>
+        </Box>
 
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text mb={5} className={classes.singlePaperTitle}>
-              Attachments (optional)
+        <Text mb={15} fw={"bold"} className={classes.regularText}>
+          Example Integration (cURL)
+        </Text>
+        <Paper bg={"#f1f3f5"} className={classes.codeContainer}>
+          <Text className={classes.code}>
+            curl -X POST{" "}
+            <Text
+              span
+              className={classes.codeRed}
+            >{`'${localUrl}/api/users/login'`}</Text>
+          </Text>
+          <Text className={`${classes.code} ${classes.codeIndent}`}>
+            -H{" "}
+            <Text span className={classes.codeRed}>
+              {`'Content-Type: application/json'`}
             </Text>
-            <Text className={classes.singlePaperDescription}>
-              You can upload an image or a pdf document
+          </Text>
+          <Text className={`${classes.code} ${classes.codeIndent}`}>
+            -d{" "}
+            <Text span className={classes.codeRed}>
+              {`'{"email": "user@example.com", "password": "securePass123"}'`}
             </Text>
-          </Paper>
+          </Text>
+        </Paper>
+        <Space h={40} />
+      </Flex>
 
-          <Group mt="lg" mb={50}>
-            <Button fullWidth color="#5345c8" type="submit">
-              Submit Form
-            </Button>
-          </Group>
-        </Flex>
+      {/* Table of Contents */}
+      <Flex flex={0.4} direction="column" className={classes.tocContainer}>
+        <Text
+          className={classes.tableOfContentTitle}
+          mt={marginTop + 10}
+          mb={marginTop / 2}
+        >
+          Table of Contents
+        </Text>
+        <Text
+          onClick={() => scrollToElement("prerequisites")}
+          className={classes.tableOfContentText}
+        >
+          Prerequisites
+        </Text>
+        <Text
+          onClick={() => scrollToElement("errorCodes")}
+          className={classes.tableOfContentText}
+        >
+          Error Codes
+        </Text>
       </Flex>
     </Flex>
   );
