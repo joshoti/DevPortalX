@@ -1,0 +1,45 @@
+.singlePaperContainer {
+  background-color: whitesmoke;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+.title {
+  font-size: 45px;
+  font-weight: 700;
+}
+.subtitle {
+  font-size: 20px;
+  font-weight: 400;
+}
+.singlePaperTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.singlePaperDescription {
+  font-weight: 460;
+  margin-bottom: 10px;
+}
+
+.errorMessage {
+  margin: 0;
+  color: red;
+  background-color: white;
+  font-weight: bold;
+}
+
+.successTitle {
+  font-size: 45px;
+  color: white;
+  font-weight: bold;
+}
+.successMessage {
+  font-size: 30px;
+  color: black;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+.caution {
+  justify-content: flex-start;
+}
