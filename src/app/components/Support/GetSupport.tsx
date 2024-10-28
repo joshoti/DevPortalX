@@ -23,6 +23,7 @@ import {
 import { useState } from "react";
 import { api, fetchCsrfToken } from "../../api/axios-api";
 import { Link } from "react-router-dom";
+import { AlertMessage } from "../Notification/AlertMessage";
 
 export function GetSupport() {
   const [fileAttached, setFileAttached] = useState(false);
@@ -47,6 +48,8 @@ export function GetSupport() {
       message: (value) => (value ? null : "Required"),
     },
   });
+
+  const defaultErrorMessage = "Unable to submit form.";
 
   // const textInputStyle = { width: 400 };
   const paperStyle = { radius: 40 };
@@ -92,8 +95,7 @@ export function GetSupport() {
         setDisplaySuccess(true);
       })
       .catch((error) => {
-        const message =
-          error.response?.data.message || "Unable to submit form.";
+        const message = error.response?.data.message;
 
         setAlertMessage(message);
         setDisplayAlert(true);
@@ -207,6 +209,10 @@ export function GetSupport() {
             </Flex>
           </Paper>
 
+          <AlertMessage
+            displayComponent={displayAlert}
+            defaultMessage={alertMessage ? alertMessage : defaultErrorMessage}
+          />
           <Group mt={3} gap={0}>
             <ThemeIcon
               className={`${classes.errorMessage} ${classes.caution}`}
