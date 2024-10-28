@@ -12,6 +12,8 @@ import { DocsWebhooks } from "./app/components/Docs/DocsWebhooks";
 import { DocsAnalytics } from "./app/components/Docs/DocsAnalytics";
 import { DocsErrorCodes } from "./app/components/Docs/DocsErrorCodes";
 import { ScrollToTop } from "./app/utils/scoll";
+import { AccountSettings } from "./app/pages/AccountSettings";
+import { RequireAuth } from "./app/components/auth/RequireAuth";
 
 export function Router() {
   return (
@@ -22,6 +24,9 @@ export function Router() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/support" element={<Support />} />
+        <Route element={<RequireAuth />}>
+          <Route path="/settings" element={<AccountSettings />} />
+        </Route>
 
         <Route path="/docs" element={<DocumentationLayout />}>
           <Route path="overview" element={<DocsOverview />} />
