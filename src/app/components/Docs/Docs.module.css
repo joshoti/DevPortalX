@@ -40,9 +40,17 @@
 
   border: 1px solid rgb(226, 226, 226);
 }
-.code {
+.code,
+.inlineCode {
   font-family: Courier, monospace;
+}
+.code {
   font-size: 15px;
+}
+.inlineCode {
+  font-size: 18px;
+  font-weight: bold;
+  display: inline;
 }
 .codeIndent {
   margin-left: 45px;
@@ -57,4 +65,10 @@
   border: 1px solid rgb(228, 228, 228);
   border-radius: 7px 7px;
   margin-bottom: 20px;
+}
+.tableHeader {
+  font-size: 18px;
+}
+.tableBody {
+  font-size: 16px;
 }

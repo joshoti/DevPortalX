@@ -1,15 +1,5 @@
-import {
-  Button,
-  Group,
-  TextInput,
-  Text,
-  Flex,
-  Title,
-  Textarea,
-  Paper,
-} from "@mantine/core";
+import { Text, Flex, Title, Space, Box, Table } from "@mantine/core";
 import classes from "./Docs.module.css";
-import { IconAt } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { docsScrollOptions } from "../../pages/Docs";
 import { scrollToElement } from "../../utils/scoll";
@@ -20,86 +10,132 @@ export function DocsWebhooks() {
     scrollToElement("head", docsScrollOptions);
   });
 
-  const paperStyle = { radius: 40 };
-  const textInputRadius = "md";
-  const inputFieldIconStyle = { size: 18, stroke: 1.5 };
+  const webhooks = [
+    { name: "Payload URL", description: "URL to send the webhook payload to" },
+    {
+      name: "Content Type",
+      description: "Content type of the webhook request",
+    },
+    {
+      name: "Events",
+      description:
+        "Name of the events to trigger the webhook. Multiple options are provided to pick from",
+    },
+    {
+      name: "Signature",
+      description: "Secret key to protect webhook notifications",
+    },
+  ];
+  const payloads = [
+    { name: "id", description: "Id of the triggered event" },
+    { name: "event", description: "Name of the triggered event" },
+    {
+      name: "status",
+      description: "Webhook status. Options are: Failed, Pending, Success",
+    },
+    {
+      name: "timestamp",
+      description: "The time of the event in UTC",
+    },
+  ];
+
+  const webhookRows = webhooks.map((webhook) => (
+    <Table.Tr key={webhook.name}>
+      <Table.Td>{webhook.name}</Table.Td>
+      <Table.Td>{webhook.description}</Table.Td>
+    </Table.Tr>
+  ));
+  const payloadRows = payloads.map((payload) => (
+    <Table.Tr key={payload.name}>
+      <Table.Td>{payload.name}</Table.Td>
+      <Table.Td>{payload.description}</Table.Td>
+    </Table.Tr>
+  ));
+
+  const marginTop = 40;
 
   return (
     <Flex h={"100%"}>
-      {/* Documentation page */}
+      {/* Content section */}
       <Flex flex={1} direction="column">
-        <Title id="head" mt={30} className={classes.title}>
-          Webhooks
-        </Title>
-        <Text mb={30} className={classes.subtitle}>
-          Tell us about a problem you'd like to report or feedback you have
-          about your experience.
+        <Title
+          id="head"
+          mt={marginTop}
+          mb={marginTop / 2}
+          className={classes.title}
+        >
+          Webhooks Integration
+        </Title>{" "}
+        <Text mb={10} className={classes.regularText}>
+          Integrate webhooks to automate notifications and data syncing. Use the
+          following structure and customize parameters to suit your needs.
         </Text>
-        <Flex direction="column">
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text className={classes.singlePaperTitle}>
-              Contact Information
-            </Text>
-            <TextInput
-              leftSection={
-                <IconAt
-                  stroke={inputFieldIconStyle.stroke}
-                  size={inputFieldIconStyle.size}
-                />
-              }
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="Email Address"
-              placeholder="your@email.com"
-            />
-          </Paper>
+        <Title
+          id="registerStructure"
+          mt={marginTop}
+          mb={marginTop / 2}
+          className={classes.title}
+        >
+          Registering Webhook
+        </Title>
+        <Box className={classes.table}>
+          <Table withColumnBorders verticalSpacing="sm" horizontalSpacing="md">
+            <Table.Thead>
+              <Table.Tr className={classes.tableHeader}>
+                <Table.Th>Field Name</Table.Th>
+                <Table.Th>Description</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody className={classes.tableBody}>
+              {webhookRows}
+            </Table.Tbody>
+          </Table>
+        </Box>
+        <Title
+          id="payloadStructure"
+          mt={marginTop}
+          mb={marginTop / 2}
+          className={classes.title}
+        >
+          Payload Structure
+        </Title>
+        <Box className={classes.table}>
+          <Table withColumnBorders verticalSpacing="sm" horizontalSpacing="md">
+            <Table.Thead>
+              <Table.Tr className={classes.tableHeader}>
+                <Table.Th>Name</Table.Th>
+                <Table.Th>Description</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody className={classes.tableBody}>
+              {payloadRows}
+            </Table.Tbody>
+          </Table>
+        </Box>
+        <Space h={40} />
+      </Flex>
 
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text className={classes.singlePaperTitle}>Feedback</Text>
-            <TextInput
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="Subject"
-              placeholder="Subject"
-            />
-            <Textarea
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="How can we help?"
-              placeholder="Message"
-            />
-          </Paper>
-
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text mb={5} className={classes.singlePaperTitle}>
-              Attachments (optional)
-            </Text>
-            <Text className={classes.singlePaperDescription}>
-              You can upload an image or a pdf document
-            </Text>
-          </Paper>
-
-          <Group mt="lg" mb={50}>
-            <Button fullWidth color="#5345c8" type="submit">
-              Submit Form
-            </Button>
-          </Group>
-        </Flex>
+      {/* Table of Contents */}
+      <Flex flex={0.4} direction="column" className={classes.tocContainer}>
+        <Text
+          className={classes.tableOfContentTitle}
+          mt={marginTop + 10}
+          mb={marginTop / 2}
+        >
+          Table of Contents
+        </Text>
+        <Text
+          onClick={() => scrollToElement("registerStructure")}
+          className={classes.tableOfContentText}
+        >
+          Registering Webhook
+        </Text>
+        <Text
+          onClick={() => scrollToElement("payloadStructure")}
+          className={classes.tableOfContentText}
+        >
+          Payload Structure
+        </Text>
       </Flex>
     </Flex>
   );
