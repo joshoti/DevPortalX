@@ -10,6 +10,7 @@ import { DocsOverview } from "./app/components/Docs/DocsOverview";
 import { DocsLogin } from "./app/components/Docs/DocsLogin";
 import { DocsWebhooks } from "./app/components/Docs/DocsWebhooks";
 import { DocsAnalytics } from "./app/components/Docs/DocsAnalytics";
+import { DocsErrorCodes } from "./app/components/Docs/DocsErrorCodes";
 import { ScrollToTop } from "./app/utils/scoll";
 
 export function Router() {
@@ -27,6 +28,7 @@ export function Router() {
           <Route path="login" element={<DocsLogin />} />
           <Route path="webhooks" element={<DocsWebhooks />} />
           <Route path="analytics" element={<DocsAnalytics />} />
+          <Route path="error-codes" element={<DocsErrorCodes />} />
         </Route>
       </Routes>
     </BrowserRouter>

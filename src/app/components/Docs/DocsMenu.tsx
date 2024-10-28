@@ -67,6 +67,16 @@ export function DocsMenu() {
           >
             Real-time Analytics
           </Tabs.Tab>
+
+          {/* 5 */}
+          <Tabs.Tab
+            onFocus={() => setActiveTabAndNavigate("error-codes")}
+            style={useCaseTabStyle}
+            value="error-codes"
+            className={styleActiveTab("error-codes")}
+          >
+            Error Codes
+          </Tabs.Tab>
         </Tabs.List>
       </Tabs>
     </Flex>
