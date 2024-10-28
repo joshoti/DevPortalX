@@ -6,22 +6,18 @@ import {
   Image,
   Text,
   Flex,
-  ThemeIcon,
   Modal,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import loginArtBird from "../../assets/images/bird-no-bg.png";
 import classes from "./Login.module.css";
-import {
-  IconAt,
-  IconLockPassword,
-  IconAlertTriangle,
-} from "@tabler/icons-react";
+import { IconAt, IconLockPassword } from "@tabler/icons-react";
 import { Link, useNavigate } from "react-router-dom";
 import { api, fetchCsrfToken } from "../../api/axios-api";
 import { useState } from "react";
 import { ForgotPassword } from "./ForgotPassword";
 import { useAuth } from "../../hooks/useAuth";
+import { AlertMessage } from "../Notification/AlertMessage";
 
 export function LoginForm() {
   const navigate = useNavigate();
@@ -38,6 +34,7 @@ export function LoginForm() {
   });
 
   const authContext = useAuth();
+  const defaultErrorMessage = "Unable to login.";
 
   const textInputStyle = { width: 400 };
   const inputFieldIconStyle = { size: 18, stroke: 1.5 };
@@ -61,8 +58,7 @@ export function LoginForm() {
         navigate("/", { replace: true });
       })
       .catch((error) => {
-        console.log(error);
-        const message = error.response?.data.message || "Unable to login";
+        const message = error.response?.data.message;
 
         setAlertMessage(message);
         setDisplayAlert(true);
@@ -118,23 +114,10 @@ export function LoginForm() {
               key={form.key("password")}
               {...form.getInputProps("password")}
             />
-            <Group mt={3} gap={0}>
-              <ThemeIcon
-                className={`${classes.errorMessage} ${classes.caution}`}
-                style={{
-                  display: displayAlert ? "flex" : "none",
-                }}
-              >
-                <IconAlertTriangle size={20} />
-              </ThemeIcon>
-              <Text
-                style={{
-                  display: displayAlert ? "block" : "none",
-                }}
-                className={classes.errorMessage}
-                children={alertMessage}
-              ></Text>
-            </Group>
+            <AlertMessage
+              displayComponent={displayAlert}
+              defaultMessage={alertMessage ? alertMessage : defaultErrorMessage}
+            />
             <Group justify="end">
               <Link className={classes.textLink} to="#">
                 <Text
