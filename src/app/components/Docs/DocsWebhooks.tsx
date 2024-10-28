@@ -19,7 +19,7 @@ export function DocsWebhooks() {
     {
       name: "Events",
       description:
-        "Name of the events to trigger the webhook. Multiple options are provided to pick from",
+        "Name of the events to trigger the webhook. Multiple options are provided",
     },
     {
       name: "Signature",
@@ -92,13 +92,16 @@ export function DocsWebhooks() {
           </Table>
         </Box>
         <Title
-          id="payloadStructure"
+          id="webhookDelivery"
           mt={marginTop}
           mb={marginTop / 2}
           className={classes.title}
         >
-          Payload Structure
+          Webhook Delivery
         </Title>
+        <Text mb={10} fw="bold" className={classes.regularText}>
+          Payload Structure
+        </Text>
         <Box className={classes.table}>
           <Table withColumnBorders verticalSpacing="sm" horizontalSpacing="md">
             <Table.Thead>
@@ -131,10 +134,10 @@ export function DocsWebhooks() {
           Registering Webhook
         </Text>
         <Text
-          onClick={() => scrollToElement("payloadStructure")}
+          onClick={() => scrollToElement("webhookDelivery")}
           className={classes.tableOfContentText}
         >
-          Payload Structure
+          Webhook Delivery
         </Text>
       </Flex>
     </Flex>
