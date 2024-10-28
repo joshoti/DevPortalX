@@ -6,20 +6,16 @@ import {
   Image,
   Text,
   Flex,
-  ThemeIcon,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import loginArtFlowers from "../../assets/images/hands-no-bg.png";
 import classes from "./Login.module.css";
-import {
-  IconAt,
-  IconLockPassword,
-  IconAlertTriangle,
-} from "@tabler/icons-react";
+import { IconAt, IconLockPassword } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { api, fetchCsrfToken } from "../../api/axios-api";
 import { useAuth } from "../../hooks/useAuth";
+import { AlertMessage } from "../Notification/AlertMessage";
 
 export function RegisterForm() {
   const [displayAlert, setDisplayAlert] = useState(false);
@@ -50,6 +46,8 @@ export function RegisterForm() {
     confirmPassword: string;
   };
 
+  const defaultErrorMessage = "Unable to create new account.";
+
   const handleSubmit = async (form: SignUpT) => {
     if (form.password !== form.confirmPassword) {
       setAlertMessage("Passwords don't match");
@@ -73,8 +71,7 @@ export function RegisterForm() {
         navigate("/", { replace: true });
       })
       .catch((error) => {
-        const message =
-          error.response?.data.message || "Unable to create new account";
+        const message = error.response?.data.message;
 
         setAlertMessage(message);
         setDisplayAlert(true);
@@ -106,6 +103,7 @@ export function RegisterForm() {
                 />
               }
               style={textInputStyle}
+              onClick={() => setDisplayAlert(false)}
               withAsterisk
               mb={15}
               size="md"
@@ -122,6 +120,7 @@ export function RegisterForm() {
                 />
               }
               style={textInputStyle}
+              onClick={() => setDisplayAlert(false)}
               withAsterisk
               mb={15}
               size="md"
@@ -138,6 +137,7 @@ export function RegisterForm() {
                 />
               }
               style={textInputStyle}
+              onClick={() => setDisplayAlert(false)}
               withAsterisk
               size="md"
               label="Confirm Password"
@@ -146,23 +146,10 @@ export function RegisterForm() {
               {...form.getInputProps("confirmPassword")}
             />
 
-            <Group mt={3} gap={0}>
-              <ThemeIcon
-                className={`${classes.errorMessage} ${classes.caution}`}
-                style={{
-                  display: displayAlert ? "flex" : "none",
-                }}
-              >
-                <IconAlertTriangle size={20} />
-              </ThemeIcon>
-              <Text
-                style={{
-                  display: displayAlert ? "block" : "none",
-                }}
-                className={classes.errorMessage}
-                children={alertMessage}
-              ></Text>
-            </Group>
+            <AlertMessage
+              displayComponent={displayAlert}
+              defaultMessage={alertMessage ? alertMessage : defaultErrorMessage}
+            />
 
             <Group mt="lg" mb="md">
               <Button color="#5345c8" type="submit">
