@@ -1,17 +1,7 @@
-import {
-  Button,
-  Group,
-  TextInput,
-  Text,
-  Flex,
-  Title,
-  Textarea,
-  Paper,
-} from "@mantine/core";
+import { Text, Flex, Title, Code, Space, Box, Table } from "@mantine/core";
 import classes from "./Docs.module.css";
-import { IconAt } from "@tabler/icons-react";
 import { useEffect } from "react";
-import { docsScrollOptions } from "../../pages/Docs";
+import { docsScrollOptions, localUrl, prodUrl } from "../../pages/Docs";
 import { scrollToElement } from "../../utils/scoll";
 
 export function DocsAnalytics() {
@@ -20,86 +10,94 @@ export function DocsAnalytics() {
     scrollToElement("head", docsScrollOptions);
   });
 
-  const paperStyle = { radius: 40 };
-  const textInputRadius = "md";
-  const inputFieldIconStyle = { size: 18, stroke: 1.5 };
+  const metrics = [
+    {
+      name: "User Activity",
+      description: "Track active users, session lengths, and actions",
+    },
+    {
+      name: "Content Engagement",
+      description: "Measure likes, shares, and comments",
+    },
+    {
+      name: "Conversion Tracking",
+      description: "Monitor transactions and conversions for business impact",
+    },
+  ];
+
+  const metricsRows = metrics.map((metric) => (
+    <Table.Tr key={metric.name}>
+      <Table.Td>{metric.name}</Table.Td>
+      <Table.Td>{metric.description}</Table.Td>
+    </Table.Tr>
+  ));
+
+  const marginTop = 40;
 
   return (
     <Flex h={"100%"}>
-      {/* Documentation page */}
+      {/* Content section */}
       <Flex flex={1} direction="column">
-        <Title id="head" mt={30} className={classes.title}>
-          Analytics
+        <Title
+          id="head"
+          mt={marginTop}
+          mb={marginTop / 2}
+          className={classes.title}
+        >
+          Analytics API
         </Title>
-        <Text mb={30} className={classes.subtitle}>
-          Tell us about a problem you'd like to report or feedback you have
-          about your experience.
+        <Text mb={10} className={classes.regularText}>
+          The Analytics API provides real-time data for informed decisions.
+          Track and analyze various metrics such as user engagement, content
+          performance, and transaction history.
         </Text>
-        <Flex direction="column">
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text className={classes.singlePaperTitle}>
-              Contact Information
-            </Text>
-            <TextInput
-              leftSection={
-                <IconAt
-                  stroke={inputFieldIconStyle.stroke}
-                  size={inputFieldIconStyle.size}
-                />
-              }
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="Email Address"
-              placeholder="your@email.com"
-            />
-          </Paper>
+        <Title
+          id="keyMetrics"
+          mt={marginTop}
+          mb={marginTop / 2}
+          className={classes.title}
+        >
+          Key Metrics
+        </Title>
+        <Box className={classes.table}>
+          <Table withColumnBorders verticalSpacing="sm" horizontalSpacing="md">
+            <Table.Thead>
+              <Table.Tr className={classes.tableHeader}>
+                <Table.Th>Status Code</Table.Th>
+                <Table.Th>Description</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody className={classes.tableBody}>
+              {metricsRows}
+            </Table.Tbody>
+          </Table>
+        </Box>
 
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text className={classes.singlePaperTitle}>Feedback</Text>
-            <TextInput
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="Subject"
-              placeholder="Subject"
-            />
-            <Textarea
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="How can we help?"
-              placeholder="Message"
-            />
-          </Paper>
+        <Text fw={"bold"} className={classes.regularText}>
+          Example Integration (cURL)
+        </Text>
+        <Code className={classes.code}>
+          {`curl -X GET ${localUrl}/api/analytics/user_activity -H "Authorization: Bearer <token>" -d "date_range=2024-09-01_to_2024-10-07"`}
+          {`curl -X GET ${prodUrl}/analytics/user_activity -H "Authorization: Bearer <token>" -d "date_range=2024-09-01_to_2024-10-07"`}
+        </Code>
+        <Space h={40} />
+      </Flex>
 
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text mb={5} className={classes.singlePaperTitle}>
-              Attachments (optional)
-            </Text>
-            <Text className={classes.singlePaperDescription}>
-              You can upload an image or a pdf document
-            </Text>
-          </Paper>
-
-          <Group mt="lg" mb={50}>
-            <Button fullWidth color="#5345c8" type="submit">
-              Submit Form
-            </Button>
-          </Group>
-        </Flex>
+      {/* Table of Contents */}
+      <Flex flex={0.4} direction="column" className={classes.tocContainer}>
+        <Text
+          className={classes.tableOfContentTitle}
+          mt={marginTop + 10}
+          mb={marginTop / 2}
+        >
+          Table of Contents
+        </Text>
+        <Text
+          onClick={() => scrollToElement("keyMetrics")}
+          className={classes.tableOfContentText}
+        >
+          Key Metrics
+        </Text>
       </Flex>
     </Flex>
   );
