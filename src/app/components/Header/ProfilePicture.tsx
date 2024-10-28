@@ -68,6 +68,9 @@ export function ProfilePicture() {
 
         <Menu.Label>Account</Menu.Label>
         <Menu.Item
+          onClick={() => {
+            navigate("/settings", { replace: true });
+          }}
           leftSection={
             <IconSettings style={{ width: rem(14), height: rem(14) }} />
           }
