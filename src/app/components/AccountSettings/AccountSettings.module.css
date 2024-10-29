@@ -1,5 +1,7 @@
+.settingLayoutContainer {
+  padding: 10px 200px;
+}
 .singlePaperContainer {
-  background-color: whitesmoke;
   padding: 30px;
   margin-bottom: 30px;
 }
@@ -7,39 +9,27 @@
   font-size: 45px;
   font-weight: 700;
 }
-.subtitle {
-  font-size: 20px;
-  font-weight: 400;
-}
-.singlePaperTitle {
+.settingTitle {
   font-size: 22px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
-.singlePaperDescription {
+.settingSubtitle {
+  font-size: 19px;
+  font-weight: 400;
+}
+.settingDescription {
   font-weight: 460;
   margin-bottom: 10px;
+  color: dimgray;
 }
-
-.errorMessage {
-  margin: 0;
-  color: red;
+.tocText {
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.iconStyle {
   background-color: white;
-  font-weight: bold;
-}
-
-.successTitle {
-  font-size: 45px;
-  color: white;
-  font-weight: bold;
-}
-.successMessage {
-  font-size: 30px;
   color: black;
-  background-color: transparent;
-  font-weight: bold;
-}
-
-.caution {
-  justify-content: flex-start;
+  align-items: center;
 }

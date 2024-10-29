@@ -1,99 +1,50 @@
 import {
-  Button,
   Group,
-  TextInput,
   Text,
   Flex,
   ThemeIcon,
-  Transition,
   Title,
-  Textarea,
   Paper,
-  FileButton,
-  CloseButton,
+  Divider,
+  Switch,
 } from "@mantine/core";
-import { useForm } from "@mantine/form";
 import classes from "./AccountSettings.module.css";
-import {
-  IconAt,
-  IconAlertTriangle,
-  IconXboxX,
-  IconSend,
-} from "@tabler/icons-react";
-import { useState } from "react";
+import { IconSend, IconLogin } from "@tabler/icons-react";
 import { api, fetchCsrfToken } from "../../api/axios-api";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { AlertMessage } from "../Notification/AlertMessage";
+import { scrollToElement } from "../../utils/scoll";
 
 export function AccountSettingsForm() {
-  const [fileAttached, setFileAttached] = useState(false);
-  const [file, setFile] = useState<File | null>(null);
-  const [displayForm, setDisplayForm] = useState(true);
-  const [displaySuccess, setDisplaySuccess] = useState(false);
+  const [settingValue, setSettingValue] = useState<SettingT>();
   const [displayAlert, setDisplayAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
+  const paperStyle = { radius: 20 };
+  const tocIconSize = 20;
 
-  const form = useForm({
-    mode: "uncontrolled",
-    initialValues: {
-      email: "",
-      subject: "",
-      message: "",
-      attachment: null,
-    },
+  const defaultErrorMessage = "Unable to make changes.";
 
-    validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
-      subject: (value) => (value ? null : "Required"),
-      message: (value) => (value ? null : "Required"),
-    },
-  });
-
-  // const textInputStyle = { width: 400 };
-  const paperStyle = { radius: 40 };
-  const successIconSize = 70;
-  const uploadButtonStyle = {
-    borderColor: "#5345c8",
-    backgroundColor: "white",
-    color: "#5345c8",
-  };
-  const textInputRadius = "md";
-  const inputFieldIconStyle = { size: 18, stroke: 1.5 };
-  type SupportT = {
-    email: string;
-    subject: string;
-    message: string;
-    attachment: File | null;
+  const dividerStyle = { marginTop: 15, marginBottom: 30 };
+  type SettingT = {
+    field: string;
+    value: boolean;
   };
 
-  const attachFile = (attachment: File | null) => {
-    if (!attachment) return;
-    setFile(attachment);
-    setFileAttached(true);
-  };
-
-  const removeAttachment = () => {
-    setFile(null);
-    setFileAttached(false);
-  };
-
-  const handleSubmit = async (form: SupportT) => {
-    form.attachment = file;
+  const handleSubmit = async (setting: SettingT) => {
     const csrfToken = await fetchCsrfToken();
 
     api
-      .post("/api/support", form, {
+      .post("/api/settings", setting, {
         headers: {
           "X-CSRF-TOKEN": csrfToken,
-          "Content-Type": "multipart/form-data",
         },
       })
       .then(() => {
-        setDisplayForm(false);
-        setDisplaySuccess(true);
+        setSettingValue(setting);
       })
       .catch((error) => {
         const message =
-          error.response?.data.message || "Unable to submit form.";
+          error.response?.data.message || "Unable to make changes.";
 
         setAlertMessage(message);
         setDisplayAlert(true);
@@ -101,199 +52,93 @@ export function AccountSettingsForm() {
   };
 
   return (
-    <Group align={"center"} justify={"center"} h={"100%"}>
-      {/* Get Support Form */}
-      <Flex direction="column" w={770}>
-        <Title mt={30} className={classes.title}>
-          Support
-        </Title>
-        <Text mb={30} className={classes.subtitle}>
-          Tell us about a problem you'd like to report or feedback you have
-          about your experience.
-        </Text>
-        <form
-          style={{ display: displayForm ? "block" : "none" }}
-          onSubmit={form.onSubmit((values) => handleSubmit(values))}
-        >
+    <Flex bg={"whitesmoke"} direction="column" align="center">
+      <Title mt={30} className={classes.title}>
+        Settings
+      </Title>
+      <Text mb={30} fz={22}>
+        Configure your account
+      </Text>
+      <Flex w="100%" gap={20} className={classes.settingLayoutContainer}>
+        {/* Table Of Content */}
+        <Flex flex={0.5} direction="column">
           <Paper
             radius={paperStyle.radius}
             className={classes.singlePaperContainer}
           >
-            <Text className={classes.singlePaperTitle}>
-              Contact Information
-            </Text>
-            <TextInput
-              leftSection={
-                <IconAt
-                  stroke={inputFieldIconStyle.stroke}
-                  size={inputFieldIconStyle.size}
-                />
-              }
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="Email Address"
-              placeholder="your@email.com"
-              key={form.key("Email")}
-              {...form.getInputProps("email")}
-            />
-          </Paper>
+            <Text className={classes.settingTitle}>Settings</Text>
 
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text className={classes.singlePaperTitle}>Feedback</Text>
-            <TextInput
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="Subject"
-              placeholder="Subject"
-              key={form.key("subject")}
-              {...form.getInputProps("subject")}
-            />
-            <Textarea
-              withAsterisk
-              mb={15}
-              size="md"
-              radius={textInputRadius}
-              label="How can we help?"
-              placeholder="Message"
-              key={form.key("message")}
-              {...form.getInputProps("message")}
-            />
-          </Paper>
-
-          <Paper
-            radius={paperStyle.radius}
-            className={classes.singlePaperContainer}
-          >
-            <Text mb={5} className={classes.singlePaperTitle}>
-              Attachments (optional)
-            </Text>
-            <Text className={classes.singlePaperDescription}>
-              You can upload an image or a pdf document
-            </Text>
-
-            <Flex align={"center"}>
-              <FileButton
-                onChange={(value) => attachFile(value)}
-                accept="image/*, .pdf"
-              >
-                {(props) => (
-                  <Button
-                    className={classes.button}
-                    radius={textInputRadius}
-                    style={uploadButtonStyle}
-                    {...props}
-                  >
-                    <Text fz={15} fw={600} m={0} p={0}>
-                      {fileAttached ? file?.name : "Upload"}
-                    </Text>
-                  </Button>
-                )}
-              </FileButton>
-              <CloseButton
-                ml={5}
-                onClick={removeAttachment}
-                display={fileAttached ? "block" : "none"}
-                c={"#5345c8"}
-                variant="transparent"
-                icon={<IconXboxX size={20} stroke={1.5} />}
-              />
-            </Flex>
-          </Paper>
-
-          <Group mt={3} gap={0}>
-            <ThemeIcon
-              className={`${classes.errorMessage} ${classes.caution}`}
-              style={{
-                display: displayAlert ? "flex" : "none",
-              }}
+            {/* Menu Item 1 */}
+            {/* Cursor: pointer not working */}
+            {/* Different message States for the different alert components */}
+            <Group
+              onClick={() => scrollToElement("notification")}
+              mt={3}
+              gap={0}
             >
-              <IconAlertTriangle size={20} />
-            </ThemeIcon>
-            <Text
-              style={{
-                display: displayAlert ? "block" : "none",
-              }}
-              className={classes.errorMessage}
-            >
-              {alertMessage}
-            </Text>
-          </Group>
-
-          <Group mt="lg" mb={50}>
-            <Button fullWidth color="#5345c8" type="submit">
-              Submit Form
-            </Button>
-          </Group>
-        </form>
-
-        {/* Request Submit Successful */}
-        <Transition
-          mounted={displaySuccess}
-          transition={"fade-up"}
-          duration={800}
-          timingFunction="ease"
-          keepMounted
-        >
-          {(transitionStyle) => (
-            <Group style={{ display: displaySuccess ? "block" : "none" }}>
-              <Paper style={transitionStyle} mt={1} mb={5}>
-                {/* Black header */}
-                <Group
-                  h={140}
-                  justify="center"
-                  style={{ backgroundColor: "black" }}
-                >
-                  <Text mb={5} className={classes.successTitle}>
-                    Thank You!
-                  </Text>
-                </Group>
-
-                {/* Body */}
-                <Group className={classes.singlePaperContainer}>
-                  <Text className={classes.subtitle}>
-                    Request submitted successfully. Kindly give at most 4
-                    business days to get a response to your feedback.
-                  </Text>
-                  <Group w={"100%"} mt={30} justify="space-around">
-                    <ThemeIcon
-                      size={successIconSize}
-                      className={classes.successMessage}
-                    >
-                      <IconSend strokeWidth={2} size={successIconSize} />
-                    </ThemeIcon>
-                    <ThemeIcon
-                      size={successIconSize}
-                      className={classes.successMessage}
-                    >
-                      <IconSend strokeWidth={2} size={successIconSize} />
-                    </ThemeIcon>
-                    <ThemeIcon
-                      size={successIconSize}
-                      className={classes.successMessage}
-                    >
-                      <IconSend strokeWidth={2} size={successIconSize} />
-                    </ThemeIcon>
-                  </Group>
-                </Group>
-              </Paper>
-
-              {/* Redirect Button */}
-              <Link to="/">
-                <Button mt="lg" mb={50} fullWidth color="#5345c8">
-                  Go To Homepage
-                </Button>
-              </Link>
+              <ThemeIcon className={classes.iconStyle}>
+                <IconSend size={tocIconSize} />
+              </ThemeIcon>
+              <Text className={classes.tocText}>Notifications</Text>
             </Group>
-          )}
-        </Transition>
+
+            {/* Menu Item 2 */}
+            <Group onClick={() => scrollToElement("account")} mt={3} gap={0}>
+              <ThemeIcon className={classes.iconStyle}>
+                <IconLogin size={tocIconSize} />
+              </ThemeIcon>
+              <Text className={classes.tocText}>Account</Text>
+            </Group>
+          </Paper>
+        </Flex>
+
+        {/* Settings Window */}
+        <Flex flex={1} direction="column">
+          <Paper
+            radius={paperStyle.radius}
+            className={classes.singlePaperContainer}
+          >
+            {/* Setting 1 */}
+            <Text id="notification" className={classes.settingTitle}>
+              Notifications
+            </Text>
+            <Text className={classes.settingSubtitle}>
+              Allow email notifications
+            </Text>
+            <Flex justify={"space-between"}>
+              <Text className={classes.settingDescription}>
+                Turn on email notifications to stay up-to-date on our latest
+                news and products.
+              </Text>
+              <Switch checked={false} size="md" />
+            </Flex>
+            <AlertMessage
+              displayComponent={displayAlert}
+              defaultMessage={alertMessage ? alertMessage : defaultErrorMessage}
+            />
+            <Divider style={dividerStyle} />
+
+            {/* Setting 2 */}
+            <Text id="account" className={classes.settingTitle}>
+              Account
+            </Text>
+            <Text className={classes.settingSubtitle}>Deactivate account</Text>
+            <Flex justify={"space-between"}>
+              <Text className={classes.settingDescription}>
+                Your account and apps will be offline. You may activate account
+                at anytime.
+              </Text>
+              <Switch checked={false} size="md" />
+            </Flex>
+
+            <AlertMessage
+              displayComponent={displayAlert}
+              defaultMessage={alertMessage ? alertMessage : defaultErrorMessage}
+            />
+            <Divider style={dividerStyle} />
+          </Paper>
+        </Flex>
       </Flex>
-    </Group>
+    </Flex>
   );
 }
