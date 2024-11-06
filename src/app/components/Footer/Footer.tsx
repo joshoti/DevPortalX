@@ -3,7 +3,7 @@ import {
   IconBrandGithubFilled,
   IconBrandLinkedin,
 } from "@tabler/icons-react";
-import { Group, Text, Anchor, Image, Divider, Flex, Box } from "@mantine/core";
+import { Group, Text, Anchor, Image, Flex, Box } from "@mantine/core";
 import IgLogo from "../../assets/images/igLogo.jpg";
 import classes from "./Footer.module.css";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +19,7 @@ export const Footer = () => {
 
   return (
     <Box className={classes.container}>
-      <Divider pb={20} my={0} w={"100%"} />
+      {/* <Divider pb={20} my={0} /> */}
       <Group gap={4} className={classes.siteName}>
         <IconCopyright size={siteNameSize} color="gray" />
         <Text

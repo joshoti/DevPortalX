@@ -37,7 +37,7 @@
 }
 .siteName {
   /* Controls the top spacing */
-  margin: 30px 0px;
+  padding: 30px 0px;
 }
 .footerContent {
   /* Controls the bottom spacing */
