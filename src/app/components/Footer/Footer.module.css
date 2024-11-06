@@ -1,28 +1,45 @@
 .title,
-.text {
-  color: var(--mantine-color-white);
+.subtitle,
+.text,
+.clickable {
+  color: white;
+}
+.title,
+.subtitle {
+  letter-spacing: -0.5px;
 }
 .title {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: 850;
 }
-.text {
-  font-size: rem(30px);
+.subtitle {
+  font-size: 18px;
   font-weight: 800;
-  letter-spacing: rem(-2px);
+  padding-bottom: 25px;
 }
-
-.headerRight {
-  margin-left: auto;
+.text,
+.clickable {
+  font-size: 16px;
+  padding-bottom: 15px;
 }
-
+.clickable {
+  cursor: pointer;
+}
+.clickable:hover {
+  color: rgb(204, 204, 204);
+  font-weight: 450;
+}
 .container {
   background-color: black;
   margin: 0px;
   padding: 0px 150px;
   max-width: 100%;
 }
-
-.tabs:hover {
-  background-color: rgb(56, 56, 56);
+.siteName {
+  /* Controls the top spacing */
+  margin: 30px 0px;
+}
+.footerContent {
+  /* Controls the bottom spacing */
+  padding-bottom: 90px;
 }
