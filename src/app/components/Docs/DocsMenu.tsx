@@ -1,19 +1,36 @@
 import { Flex, Tabs } from "@mantine/core";
 import classes from "./Docs.module.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function DocsMenu() {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("overview");
 
+  const location = useLocation();
+  /**
+   * Sets active tab. Useful for when the page is reached from
+   * the browser's URL instead of being clicked in the docs page.
+   */
+  const styleActiveTab = () => {
+    const currentPath = location.pathname.substring("/docs/".length);
+    if (activeTab !== currentPath) {
+      setActiveTab(currentPath);
+    }
+  };
+  styleActiveTab();
+
   const setActiveTabAndNavigate = (value: string) => {
-    setActiveTab(value);
     navigate(`/docs/${value}`, { replace: true });
   };
 
-  const styleActiveTab = (value: string) => {
-    if (value !== activeTab) return `${classes.menuText} ${classes.tabs}`;
+  /**
+   * Returns the style for active tab/menu to one tab and regular style for the others
+   * @param tabName is the name of a tab/menu
+   * @returns css class(es)
+   */
+  const getTabStyle = (tabName: string) => {
+    if (tabName !== activeTab) return `${classes.menuText} ${classes.tabs}`;
     return `${classes.menuText} ${classes.tabs} ${classes.focus}`;
   };
 
@@ -26,7 +43,7 @@ export function DocsMenu() {
         radius={10}
         orientation="vertical"
         variant="pills"
-        defaultValue="overview"
+        defaultValue={activeTab}
       >
         <Tabs.List w={"100%"}>
           {/* 1 */}
@@ -34,7 +51,7 @@ export function DocsMenu() {
             onFocus={() => setActiveTabAndNavigate("overview")}
             h={useCaseMenuHeight}
             value="overview"
-            className={styleActiveTab("overview")}
+            className={getTabStyle("overview")}
           >
             Overview
           </Tabs.Tab>
@@ -44,7 +61,7 @@ export function DocsMenu() {
             onFocus={() => setActiveTabAndNavigate("login")}
             h={useCaseMenuHeight}
             value="login"
-            className={styleActiveTab("login")}
+            className={getTabStyle("login")}
           >
             Login SSO
           </Tabs.Tab>
@@ -54,7 +71,7 @@ export function DocsMenu() {
             onFocus={() => setActiveTabAndNavigate("webhooks")}
             h={useCaseMenuHeight}
             value="webhooks"
-            className={styleActiveTab("webhooks")}
+            className={getTabStyle("webhooks")}
           >
             Webhooks
           </Tabs.Tab>
@@ -64,7 +81,7 @@ export function DocsMenu() {
             onFocus={() => setActiveTabAndNavigate("analytics")}
             h={useCaseMenuHeight}
             value="analytics"
-            className={styleActiveTab("analytics")}
+            className={getTabStyle("analytics")}
           >
             Real-time Analytics
           </Tabs.Tab>
@@ -74,7 +91,7 @@ export function DocsMenu() {
             onFocus={() => setActiveTabAndNavigate("error-codes")}
             h={useCaseMenuHeight}
             value="error-codes"
-            className={styleActiveTab("error-codes")}
+            className={getTabStyle("error-codes")}
           >
             Error Codes
           </Tabs.Tab>
