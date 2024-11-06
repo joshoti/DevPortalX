@@ -16,7 +16,8 @@ export function DocsMenu() {
     if (value !== activeTab) return `${classes.menuText} ${classes.tabs}`;
     return `${classes.menuText} ${classes.tabs} ${classes.focus}`;
   };
-  const useCaseTabStyle = { height: "50px" };
+
+  const useCaseMenuHeight = 50;
 
   return (
     <Flex w={320} direction={"column"}>
@@ -31,7 +32,7 @@ export function DocsMenu() {
           {/* 1 */}
           <Tabs.Tab
             onFocus={() => setActiveTabAndNavigate("overview")}
-            style={useCaseTabStyle}
+            h={useCaseMenuHeight}
             value="overview"
             className={styleActiveTab("overview")}
           >
@@ -41,7 +42,7 @@ export function DocsMenu() {
           {/* 2 */}
           <Tabs.Tab
             onFocus={() => setActiveTabAndNavigate("login")}
-            style={useCaseTabStyle}
+            h={useCaseMenuHeight}
             value="login"
             className={styleActiveTab("login")}
           >
@@ -51,7 +52,7 @@ export function DocsMenu() {
           {/* 3 */}
           <Tabs.Tab
             onFocus={() => setActiveTabAndNavigate("webhooks")}
-            style={useCaseTabStyle}
+            h={useCaseMenuHeight}
             value="webhooks"
             className={styleActiveTab("webhooks")}
           >
@@ -61,7 +62,7 @@ export function DocsMenu() {
           {/* 4 */}
           <Tabs.Tab
             onFocus={() => setActiveTabAndNavigate("analytics")}
-            style={useCaseTabStyle}
+            h={useCaseMenuHeight}
             value="analytics"
             className={styleActiveTab("analytics")}
           >
@@ -71,7 +72,7 @@ export function DocsMenu() {
           {/* 5 */}
           <Tabs.Tab
             onFocus={() => setActiveTabAndNavigate("error-codes")}
-            style={useCaseTabStyle}
+            h={useCaseMenuHeight}
             value="error-codes"
             className={styleActiveTab("error-codes")}
           >
