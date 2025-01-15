@@ -24,7 +24,7 @@ curl -O https://raw.githubusercontent.com/joshoti/DevPortalX/HEAD/boot.sh
 source boot.sh
 ```
 
-The application should now be running at `http://localhost:3000`.
+The application should now be running at [http://localhost:3000](http://localhost:3000)
 
 ## Current Homepage
 <img src="src/app/assets/images/current Homepage.png" title="Homepage">
