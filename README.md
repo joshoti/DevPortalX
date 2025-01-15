@@ -3,31 +3,32 @@ A centralized developer portal providing APIs, resources, and tools for seamless
 
 - See Java Spring Boot API [here](https://github.com/joshoti/DevPortalX-api)
 
-## Current Homepage (You should take a look)
-<img src="src/app/assets/images/current Homepage.png" title="Homepage">
+## Live Development Link
+Find the frontend's live development link [here](https://dev-portal-x.vercel.app). 
 
-# Getting Started
-
-## Prerequisites
+## Local Environment Setup
 Ensure you have the following installed:
 - [Node.js](https://nodejs.org/en)
 
-## Installation
-1. Clone the repository:
-```bash
-git clone https://github.com/joshoti/DevPortalX.git
-cd DevPortalX
-```
-2. Install packages/dependencies:
-```bash
-npm install
+Run below scripts in terminal depending on your OS. On completion, script tells you next step.
+
+### 1. Windows (cmd app)
+```py
+curl -O https://raw.githubusercontent.com/joshoti/DevPortalX/HEAD/boot.bat
+boot.bat
 ```
 
-3. Run and Access the application:
-```bash
-npm run start
+### 2. Unix (terminal app)
+```py
+curl -O https://raw.githubusercontent.com/joshoti/DevPortalX/HEAD/boot.sh
+source boot.sh
 ```
+
 The application should now be running at `http://localhost:3000`.
+
+## Current Homepage
+<img src="src/app/assets/images/current Homepage.png" title="Homepage">
+
 
 ## Contributing
 Contributions are welcome! Please open an issue or submit a pull request for any enhancements, bug fixes, or new features.
